@@ -19,6 +19,6 @@ if(isset($_GET["action"])) {
 
         // RestaurantController
         case "accueil" : $ctrlRestaurant -> afficherHoraire(); break;
-
+        case "carte" : $ctrlRestaurant -> afficherCarte(); break;
     }
 }
