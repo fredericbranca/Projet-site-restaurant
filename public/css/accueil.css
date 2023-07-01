@@ -1,0 +1,160 @@
+body {
+    background: rgba(0, 0, 0, 0.4) url(../img/resto.jpg) no-repeat center 85%;
+    background-blend-mode: darken;
+    background-size: cover;
+}
+
+.header {
+    min-height: 87vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 150px;
+}
+.header p:first-of-type {
+    font-size: 20px;
+}
+.header p:nth-child(3) {
+    font-size: 40px;
+}
+.bouton {
+    padding: 1rem 2rem;
+    background-color: rgb(226, 175, 30);
+    transition: 0.3s;
+    z-index: 1;
+}
+.bouton span {
+    color: black;
+    font-weight: bold;
+    font-size: 24px;
+}
+.bouton:hover {
+    box-shadow: 0 0 0 .2rem rgb(226, 175, 30);
+}
+
+.section-carte {
+    min-height: 750px;
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 90px;
+}
+.section-carte img {
+    height: 466px;
+    width: 466px;
+}
+.section-carte .titre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.section-carte p {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.section-commande {
+    position: relative;
+    min-height: 273px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("../img/resto.jpg");
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.50);
+}
+.section-commande p:first-of-type {
+    font-size: 25px;
+    font-weight: bold;
+    z-index: 1;
+}
+.section-commande p:nth-child(3) {
+    font-size: 24px;
+    z-index: 1;
+}
+
+.section-infos {
+    background-color: black;
+    min-height: 930px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.infos-pratiques {
+    background-color: rgb(30, 30, 30);
+    width: 560px;
+    height: 624px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 38px
+}
+.infos-pratiques .titre, .horaires .titre {
+    font-size: 35px;
+}
+.infos-pratiques span, .horaires span {
+    display: block;
+    width: 110px;
+    height: 10px;
+    border-top: 1px solid rgb(226, 175, 30);
+}
+.infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+}
+.infos p:first-of-type {
+    font-size: 25px;
+    color: rgb(160, 160, 160);
+}
+.infos p:nth-child(2) {
+    font-size: 20px;
+    max-width: 470px;
+}
+.horaires {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgb(226, 175, 30);
+    border-right: 1px solid rgb(226, 175, 30);
+    border-bottom: 1px solid rgb(226, 175, 30);
+    padding: 30px;
+}
+.details-horaires {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 100px;
+    align-items: left;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
