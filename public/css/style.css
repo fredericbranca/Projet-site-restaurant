@@ -1,0 +1,157 @@
+/* Réinitialise les marges, paddings + police de la page */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+}
+
+/* Navbar Footer */
+nav {
+    margin: 0 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+nav, footer, a { 
+    font-size: 24px;
+    text-decoration: none;
+}
+nav .logo-container {
+    display: flex;
+    align-items: center;
+}
+nav .link-container {
+    display: flex;
+    align-items: center;
+    gap: 71px;
+}
+nav .link-container a {
+    position: relative;
+}
+nav .link-container a:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 2px;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.3s;
+}
+nav .link-container a:hover:after {
+    transform: scaleX(1);
+}
+
+nav .icon-container {
+    display: flex;
+    align-items: center;
+    gap: 38px
+}
+.icone {
+    height: 40px;
+    width: 40px;
+}
+.logo {
+    height: 120px;
+    width: 120px;
+}
+nav .nav-btn, nav #nav-check {
+    display: none;
+}
+
+footer {
+    height: 270px;
+    background-color: rgb(57, 57, 57);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+/* Responsivité de la nav bar et du footer (test)*/ 
+@media (max-width: 1200px) {
+    nav .nav-btn {
+        display: inline-block;
+        position: absolute;
+        right: 5%;
+        top: 35px;
+    }
+    nav .nav-btn label {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 13px;
+    }
+    nav .nav-btn label span {
+        display: block;
+        width: 25px;
+        height: 10px;
+        border-top: 2px solid #eee;
+    }
+    nav .icon-container {
+        margin-right: 3.3em;
+        gap: 38px
+    }
+    nav .link-container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        overflow: hidden;
+        top: 120px;
+        left: 10px;
+        gap: 20px;
+    }
+    nav .link-container a {
+        width: 100%;
+        overflow: hidden;
+    }
+    nav #nav-check:not(:checked) ~ .link-container {
+        height: 0px;
+    }
+    nav #nav-check:checked ~ .link-container {
+        height: fit-content;
+        overflow-y: auto;
+    }
+
+    footer {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 756px) {
+    footer {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    nav .icon-container {
+        position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        width: fit-content;
+        overflow-y: hidden;
+        top: 260px;
+        left: 10px;
+        gap: 20px
+    }
+    nav #nav-check:not(:checked) ~ .icon-container {
+        height: 0px;
+    }
+    nav #nav-check:checked ~ .icon-container {
+        height: fit-content;
+        overflow-y: auto;
+    }
+    nav .logo-container a {
+        width: 40%;
+    }
+    footer {
+        font-size: 10px;
+    }
+}
