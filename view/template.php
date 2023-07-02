@@ -59,7 +59,7 @@ $titre_secondaire = (isset($titre_secondaire)) ? $titre_secondaire : "";
     </footer>
 
     <!-- script -->
-    <script type="text/javascript" src="public/js/script.js"></script>
+    <!-- <script type="text/javascript" src="public/js/script.js"></script> -->
 
 </body>
 
