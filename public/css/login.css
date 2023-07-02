@@ -1,0 +1,77 @@
+body {
+    background-color: black;
+}
+
+.titre {
+    font-size: 35px;
+    font-weight: bold;
+}
+.header-link {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 100px;
+    gap: 150px;
+}
+.login {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+.register {
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+}
+.sous-titre {
+    font-size: 30px;
+    font-weight: bold;
+}
+.input-login {
+    background-color: rgb(57, 57, 57);
+    padding: 20px;
+    width: 640px;
+    border-radius: 5px;
+    font-size: 25px;
+}
+.text {
+    width: 700px;
+    font-size: 27px;
+}
+.btn-register {
+    width: fit-content;
+}
+.btn-register span {
+    font-size: 30px;
+    font-weight: normal;
+}
+.btn-login {
+    color: black;
+    font-size: 30px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.alert-champs {
+    position: absolute;
+    color: rgb(226, 175, 30);
+    top: 40px;
+    left: 9px;
+}
+.alert-email{
+    position: absolute;
+    color: rgb(226, 175, 30);
+    top: 145px;
+    left: 9px;
+}
+.alert-password {
+    position: absolute;
+    color: rgb(226, 175, 30);
+    top: 252px;
+    left: 9px;
+}
