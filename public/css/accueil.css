@@ -19,20 +19,6 @@ body {
 .header p:nth-child(3) {
     font-size: 40px;
 }
-.bouton {
-    padding: 1rem 2rem;
-    background-color: rgb(226, 175, 30);
-    transition: 0.3s;
-    z-index: 1;
-}
-.bouton span {
-    color: black;
-    font-weight: bold;
-    font-size: 24px;
-}
-.bouton:hover {
-    box-shadow: 0 0 0 .2rem rgb(226, 175, 30);
-}
 
 .section-carte {
     min-height: 750px;

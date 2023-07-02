@@ -71,6 +71,7 @@ footer {
     flex-direction: column;
     gap: 25px;
     align-items: center;
+    flex-shrink: 0;
 }
 
 /* Responsivité de la nav bar et du footer (test)*/ 
@@ -154,4 +155,67 @@ footer {
     footer {
         font-size: 10px;
     }
+}
+
+.bouton {
+    padding: 1rem 2rem;
+    background-color: rgb(226, 175, 30);
+    transition: 0.3s;
+    z-index: 1;
+}
+.bouton span {
+    color: black;
+    font-weight: bold;
+    font-size: 24px;
+}
+.bouton:hover {
+    box-shadow: 0 0 0 .2rem rgb(226, 175, 30);
+}
+
+.wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.link {
+    gap: 20px;
+}
+.link a, .link:nth-child(2) {
+    font-size: 30px;
+}
+.link:nth-child(1) {
+    font-size: 35px;
+}
+.header-link {
+    gap: 10px;
+}
+
+.input-theme {
+    background-color: rgb(57, 57, 57);
+    padding: 20px;
+    width: 360px;
+    border-radius: 5px;
+    font-size: 25px;
+}
+.input-btn {
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+}
+
+.no-acces {
+    min-height: 58vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
