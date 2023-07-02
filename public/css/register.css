@@ -1,0 +1,107 @@
+body {
+    background-color: black;
+}
+
+.header-link {
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+.titre {
+    font-size: 35px;
+    font-weight: bold;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    padding-bottom: 100px;
+}
+.sous-titre {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: left;
+    width: 640px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.champs {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding-bottom: 100px;
+}
+.input-register {
+    background-color: rgb(57, 57, 57);
+    padding: 20px;
+    width: 640px;
+    border-radius: 5px;
+    font-size: 25px;
+}
+.text {
+    width: 640px;
+    font-size: 21px;
+}
+.btn-register {
+    width: 640px;
+    font-size: 30px;
+    color: black;
+    cursor: pointer;
+}
+.btn-login {
+    display: flex;
+    justify-content: center;
+    width: 640px;
+    font-size: 30px;
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+}
+.btn-login:hover {
+    box-shadow: 0 0 0 .2rem rgb(255, 255, 255);
+}
+
+.alert-email {
+    position: absolute;
+    top: 268px;
+    left: 5px;
+    color: rgb(226, 175, 30);
+}
+.alert-nom {
+    position: absolute;
+    top: 74px;
+    left: 5px;
+    color: rgb(226, 175, 30);
+}
+.alert-prenom {
+    position: absolute;
+    top: 170px;
+    left: 5px;
+    color: rgb(226, 175, 30);
+}
+.alert-email {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    color: rgb(226, 175, 30);
+}
+.alert-pass {
+    position: absolute;
+    top: 365px;
+    left: 5px;
+    color: rgb(226, 175, 30);
+}
+.alert-cpass {
+    position: absolute;
+    top: 461px;
+    left: 5px;
+    color: rgb(226, 175, 30);
+}
+.alert-champs {
+    position: absolute;
+    top: -30px;
+    left: 5px;
+    color: rgb(226, 175, 30);
+}
