@@ -1,0 +1,95 @@
+body {
+    background-color: black;
+}
+
+.reservation {
+    padding: 100px 0px;
+    gap: 80px;
+}
+.titre {
+    font-size: 35px;
+    font-weight: bold;
+}
+.choix-1 {
+    gap: 24px;
+}
+.choix-2 {
+    gap: 100px
+}
+form {
+    position: relative;
+    gap: 54px;
+}
+
+.alert {
+    position: absolute;
+    color: rgb(226, 175, 30)
+}
+.alert-1 {
+    position: absolute;
+    bottom: 112px;
+    color: rgb(226, 175, 30)
+}
+.alert-2 {
+    color: rgb(226, 175, 30);
+    font-size: 25px;
+    padding: 10px;
+}
+
+.input-infos-date {
+    background-color: rgb(57, 57, 57);
+    padding: 20px;
+    width: fit-content;
+    border-radius: 5px;
+    font-size: 25px;
+}
+.fa-regular {
+    padding-left: 100px;
+}
+.input-1 {
+    gap: 24px;
+}
+.champs {
+    display: flex;
+    flex-direction: wrap;
+    width: 750px;
+    justify-content: space-between;
+}
+
+.civilite-section {
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+    gap: 10px;
+}
+.civilite-section:first-child {
+    font-size: 18px;
+}
+.civilite {
+    display: flex;
+    flex-wrap: wrap;
+    width: 63%;
+    justify-content: space-between;
+    font-size: 15px;
+}
+.input-infos {
+    background-color: rgb(57, 57, 57);
+    padding: 10px;
+    width: 360px;
+    border-radius: 5px;
+    font-size: 15px;
+    border-radius: 10px;
+}
+.bouton {
+    font-weight: normal;
+}
+.bouton-modif {
+    font-weight: normal;
+    padding-left: 95px;
+    padding-right: 95px;
+}
+img {
+    width: 344px;
+    height: 36px;
+}
+
