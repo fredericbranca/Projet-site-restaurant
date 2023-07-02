@@ -2,8 +2,9 @@
 
 session_start();
 
-use Controller\ReservationController;
 use Controller\RestaurantController; // On "use" le controller Restaurant
+use Controller\ReservationController;
+use Controller\AuthentificationController;
 
 // On autocharge les classes du projet
 spl_autoload_register(function ($class_name) {
@@ -12,6 +13,7 @@ spl_autoload_register(function ($class_name) {
 
 $ctrlRestaurant = new RestaurantController(); // On instancie le controller Restaurant
 $ctrlReservation = new ReservationController();
+$ctrlAuthentification = new AuthentificationController();
 
 $id = (isset($_GET["id"])) ? $_GET["id"] : null;
 
@@ -27,5 +29,10 @@ if(isset($_GET["action"])) {
         case "reservation" : $ctrlReservation -> enregistrerReservation(); break;
         case "infosReservation" : $ctrlReservation -> validerReservation(); break;
         case "reservationValidee" : include "view/reservationValidee.php"; break;
+
+        // AuthentificationController
+        case "login" : $ctrlAuthentification -> login(); break;
+        case "register" : $ctrlAuthentification -> register(); break;
+        case "logout" : $ctrlAuthentification -> logout(); break;
     }
 }
