@@ -67,7 +67,7 @@ $titre_secondaire = (isset($titre_secondaire)) ? $titre_secondaire : "";
 
     if (isset($_SESSION['alerte'])) {
     ?>
-        <div id="alert"><?= $_SESSION['alerte'] ?></div>
+        <?= $_SESSION['alerte'] ?>
         <script>
             tempAlert(3000, 'alert');
         </script>

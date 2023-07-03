@@ -42,7 +42,7 @@ class AuthentificationController
                     // Vérifie le mot de passe
                     if (password_verify($password, $hashedPassword)) {
                         $userId = $userData['id'];
-                        $_SESSION['alerte'] = "Connexion réussie";
+                        $_SESSION['alerte'] = "<div id='alert' class='alert-green'>Connexion réussie</div>";
                         $_SESSION['users'] = $userData;
                         header("Location: index.php?action=profil");
                         exit;
@@ -151,7 +151,7 @@ class AuthentificationController
                 ]);
 
                 // Redirection + message
-                $_SESSION['alerte'] = "Inscription réussie : Vous pouvez vous connecter";
+                $_SESSION['alerte'] = "<div id='alert' class='alert-green'>Inscription réussie : Vous pouvez vous connecter</div>";
                 header("Location: index.php?action=login");
                 exit;
 
@@ -169,14 +169,14 @@ class AuthentificationController
     public function logout()
     {
         if (!isset($_SESSION['users'])) {
-            $_SESSION['alerte'] = "Vous êtes déjà déconnecté";
+            $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Vous êtes déjà déconnecté</div>";
             header("Location: index.php?action=login");
             exit;
         }
         if ($_GET['action'] === 'logout') {
             // Détruit la session et rediriger vers l'accueil
             unset($_SESSION['users']);
-            $_SESSION['alerte'] = "Déconnexion réussie";
+            $_SESSION['alerte'] = "<div id='alert' class='alert-green'>Déconnexion réussie</div>";
             header("Location: index.php?action=login");
             exit;
         }
