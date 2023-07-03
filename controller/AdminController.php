@@ -160,11 +160,47 @@ class AdminController
                 $_SESSION['alerte'] = "<div id='alert' class='alert-green'>Le produit a été ajouté</div>";
                 header("Location: index.php?action=admin#$section");
                 exit;
+
             } else {
                 $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Champs incorrect</div>";
                 header("Location: index.php?action=admin#$section");
                 exit;
             }
+        }
+
+        // Supprimer un produit de la carte
+
+        if (isset($_POST['supprimer']) && isset($_GET['id'])) {
+            
+            // Filtre
+            $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+            if(empty($id)) {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Erreur URL id</div>";
+                header("Location: index.php?action=admin");
+                exit;
+            }
+
+            if($id !== false) {
+
+                // Requete pour supprimer le produit
+                $requeteSupprimerProduit = $pdo->prepare("
+                    DELETE FROM carte
+                    WHERE id_produit = :id
+                ");
+                $requeteSupprimerProduit->execute([
+                    'id' => $id
+                ]);
+
+                $_SESSION['alerte'] = "<div id='alert' class='alert-green'>Le produit a été supprimé de la carte</div>";
+                header("Location: index.php?action=admin");
+                exit;
+
+            } else {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Erreur URL id</div>";
+                header("Location: index.php?action=admin");
+                exit;
+            }
+
         }
 
         require "view/admin.php";
