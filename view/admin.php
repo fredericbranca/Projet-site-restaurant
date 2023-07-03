@@ -45,7 +45,7 @@ $boisson = $requeteBoisson->fetchAll();
                 <?php
                 }
                 ?>
-                <form class="produit" method="POST" action="index.php?action=admin" enctype="multipart/form-data">
+                <form class="produit" method="POST" action="index.php?action=admin&section=dejeuner" enctype="multipart/form-data">
                     <input class="input-produit" type="text" id="produit" name="produit" maxlength="255" required autocomplete="off" placeholder="Ajouter un produit à la carte">
                     <div class="wrap">
                         <input class=" input-prix" type="number" id="prix" name="prix" min="0.01" step="0.01" required autocomplete="off"" placeholder="Prix">
@@ -73,7 +73,7 @@ $boisson = $requeteBoisson->fetchAll();
                 <?php
                 }
                 ?>
-                <form class="produit" method="POST" action="index.php?action=admin" enctype="multipart/form-data">
+                <form class="produit" method="POST" action="index.php?action=admin&section=soir" enctype="multipart/form-data">
                     <input class="input-produit" type="text" id="produit" name="produit" maxlength="255" required autocomplete="off" placeholder="Ajouter un produit à la carte">
                     <div class="wrap">
                         <input class=" input-prix" type="number" id="prix" name="prix" min="0.01" step="0.01" required autocomplete="off"" placeholder="Prix">
@@ -101,7 +101,7 @@ $boisson = $requeteBoisson->fetchAll();
                 <?php
                 }
                 ?>
-                <form class="produit" method="POST" action="index.php?action=admin" enctype="multipart/form-data">
+                <form class="produit" method="POST" action="index.php?action=admin&section=entree" enctype="multipart/form-data">
                     <input class="input-produit" type="text" id="produit" name="produit" maxlength="255" required autocomplete="off" placeholder="Ajouter un produit à la carte">
                     <div class="wrap">
                         <input class=" input-prix" type="number" id="prix" name="prix" min="0.01" step="0.01" required autocomplete="off"" placeholder="Prix">
@@ -129,7 +129,7 @@ $boisson = $requeteBoisson->fetchAll();
                 <?php
                 }
                 ?>
-                <form class="produit" method="POST" action="index.php?action=admin" enctype="multipart/form-data">
+                <form class="produit" method="POST" action="index.php?action=admin&section=plat" enctype="multipart/form-data">
                     <input class="input-produit" type="text" id="produit" name="produit" maxlength="255" required autocomplete="off" placeholder="Ajouter un produit à la carte">
                     <div class="wrap">
                         <input class=" input-prix" type="number" id="prix" name="prix" min="0.01" step="0.01" required autocomplete="off"" placeholder="Prix">
@@ -157,7 +157,7 @@ $boisson = $requeteBoisson->fetchAll();
                 <?php
                 }
                 ?>
-                <form class="produit" method="POST" action="index.php?action=admin" enctype="multipart/form-data">
+                <form class="produit" method="POST" action="index.php?action=admin&section=dessert" enctype="multipart/form-data">
                     <input class="input-produit" type="text" id="produit" name="produit" maxlength="255" required autocomplete="off" placeholder="Ajouter un produit à la carte">
                     <div class="wrap">
                         <input class=" input-prix" type="number" id="prix" name="prix" min="0.01" step="0.01" required autocomplete="off"" placeholder="Prix">
@@ -185,7 +185,7 @@ $boisson = $requeteBoisson->fetchAll();
                 <?php
                 }
                 ?>
-                <form class="produit" method="POST" action="index.php?action=admin" enctype="multipart/form-data">
+                <form class="produit" method="POST" action="index.php?action=admin&section=boisson" enctype="multipart/form-data">
                     <input class="input-produit" type="text" id="produit" name="produit" maxlength="255" required autocomplete="off" placeholder="Ajouter un produit à la carte">
                     <div class="wrap">
                         <input class=" input-prix" type="number" id="prix" name="prix" min="0.01" step="0.01" required autocomplete="off"" placeholder="Prix">
