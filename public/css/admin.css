@@ -1,0 +1,104 @@
+body {
+    background-color: black;
+}
+
+.input-produit {
+    background-color: rgb(57, 57, 57);
+    padding: 20px;
+    width: 900px;
+    height: 44px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+.input-prix {
+    background-color: rgb(57, 57, 57);
+    padding: 20px;
+    width: 110px;
+    height: 44px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+.content p {
+    font-size: 25px;
+}
+.btn-ajouter {
+    color: black;
+    cursor: pointer;
+    width: 150px;
+}
+.btn-supprimer {
+    color: black;
+    cursor: pointer;
+    width: 150px;
+}
+
+.header {
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header p {
+    font-size: 40px;
+    font-weight: bold;
+}
+.section-carte {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    padding: 100px 0px;
+}
+.carte-content {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 36px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    gap: 20px;
+    padding: 15px;
+}
+.produit {
+    display: flex;
+    flex-direction: wrap;
+    align-items: center;
+    gap: 50px;
+}
+.carte-section-1 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
+.carte-section-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.titre {
+    font-size: 35px;
+    font-weight: bold;
+}
+.sous-titre {
+    font-size: 30px;
+    font-weight: bold;
+}
+.titre-2 {
+    font-size: 30px;
+    font-weight: bold;
+    color:rgb(226, 175, 30);
+    padding-left: 50px;
+}
+span {
+    width: 1px;
+    height: 100px;
+    background-color: rgb(226, 175, 30);
+  }
+.wrap {
+    gap: 10px;
+}
