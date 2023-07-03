@@ -18,6 +18,7 @@ $ctrlAuthentification = new AuthentificationController();
 $ctrlAdmin = new AdminController();
 
 $id = (isset($_GET["id"])) ? $_GET["id"] : null;
+$section = (isset($_GET["section"])) ? $_GET["section"] : null;
 
 if(isset($_GET["action"])) {
 
@@ -38,6 +39,6 @@ if(isset($_GET["action"])) {
         case "logout" : $ctrlAuthentification -> logout(); break;
 
         // AdminController
-        case "admin" : $ctrlAdmin -> admin($id); break;
+        case "admin" : $ctrlAdmin -> admin($id, $section); break;
     }
 }
