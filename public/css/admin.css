@@ -26,6 +26,14 @@ body {
     border-radius: 5px;
     font-size: 15px;
 }
+.input-table {
+    background-color: rgb(57, 57, 57);
+    padding: 20px;
+    width: 200px;
+    height: 44px;
+    border-radius: 5px;
+    font-size: 15px;
+}
 .content p {
     font-size: 25px;
 }
@@ -136,4 +144,34 @@ span {
     flex-direction: column;
     gap: 20px;
     padding: 15px;
+}
+
+.modifier-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.table-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-top: 100px;
+    align-items: center;
+}
+.table {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+}
+.text {
+    font-size: 30px;
+}
+
+.alert-table {
+    position: absolute;
+    top: 226px;
+    left: 61px;
+    color: rgb(226, 175, 30);
 }
