@@ -67,7 +67,6 @@ $horaires = $requeteHoraires->fetchAll();
             }
             ?>
         </div>
-
     </div>
 </div>
 
