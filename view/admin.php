@@ -8,10 +8,10 @@ if (isset($_SESSION['message'])) {
 } else {
     $message = "";
 }
-echo $message;
 
 // Affiche la page pour modifier les horaires
 if (isset($_GET['page']) && $_GET['page'] === 'horaire') {
+    echo $message;
     $horaires = $requeteHoraires->fetchAll();
 ?>
     <div class="header">
@@ -51,19 +51,33 @@ if (isset($_GET['page']) && $_GET['page'] === 'horaire') {
 <?php
     // affiche la page pour modifier le nombre de table
 } elseif (isset($_GET['page']) && $_GET['page'] === 'table') {
+    $nbTable = $requeteTable->fetch();
 ?>
-    <div class="header">
-        <p>ADMINISTRATION</p>
-    </div>
 
-    <div class="pagination wrap">
-        <a class="bouton btn-register" href="index.php?action=admin"><span>MODIFIER LA CARTE</span></a>
-        <a class="bouton btn-register" href="index.php?action=admin&page=horaire"><span>MODIFIER LES HORAIRES</span></a>
+    <div class="modifier-table">
+        <div class="header">
+            <p>ADMINISTRATION</p>
+        </div>
+
+        <div class="pagination wrap">
+            <a class="bouton btn-register" href="index.php?action=admin"><span>MODIFIER LA CARTE</span></a>
+            <a class="bouton btn-register" href="index.php?action=admin&page=horaire"><span>MODIFIER LES HORAIRES</span></a>
+        </div>
+
+        <form class="table-form" method="POST" action="index.php?action=admin" enctype="multipart/form-data">
+            <div class="text">MODIFIER LE NOMBRE DE TABLE</div>
+            <div class="table">
+                <input class="input-table" type="number" id="table" name="table" min="1" step="1" required autocomplete="off" value="<?= $nbTable['nb_table'] ?>">
+                <button class="bouton btn-supprimer" type="submit" name="modifierTable" id="submit">MODIFIER</button>
+                <?= $message ?>
+            </div>
+        </form>
     </div>
 
 <?php
     // affiche la page pour modifier la carte
 } elseif (!isset($_GET['page']) && isset($_GET['action']) && $_GET['action'] === 'admin') {
+    echo $message;
 
     $dejeuner = $requeteDejeuner->fetchAll();
     $soir = $requeteSoir->fetchAll();
