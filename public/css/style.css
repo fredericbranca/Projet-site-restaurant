@@ -171,6 +171,7 @@ footer {
     background-color: rgb(226, 175, 30);
     transition: 0.3s;
     z-index: 1;
+    cursor: pointer;
 }
 .bouton span {
     color: black;
