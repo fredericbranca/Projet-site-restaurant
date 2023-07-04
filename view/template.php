@@ -44,7 +44,7 @@ $titre_secondaire = (isset($titre_secondaire)) ? $titre_secondaire : "";
             </div>
             <div class="icon-container">
                 <a href="index.php?action=login"><img class="icone" src="public/img/user.png"></a>
-                <a href="index.php?action=cart"><img class="icone" src="public/img/panier.png"></a>
+                <a href="index.php?action=panier"><img class="icone" src="public/img/panier.png"></a>
             </div>
         </nav>
     </header>
