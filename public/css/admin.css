@@ -18,6 +18,14 @@ body {
     border-radius: 5px;
     font-size: 15px;
 }
+.input-horaire {
+    background-color: rgb(57, 57, 57);
+    padding: 20px;
+    width: 600px;
+    height: 44px;
+    border-radius: 5px;
+    font-size: 15px;
+}
 .content p {
     font-size: 25px;
 }
@@ -101,4 +109,31 @@ span {
   }
 .wrap {
     gap: 10px;
+}
+.pagination {
+    padding-top: 50px;
+}
+.horaires {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 50px 0px;
+}
+.details-horaires {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px
+}
+.horaire {
+    display: flex;
+    flex-direction: wrap;
+    align-items: center;
+    gap: 50px;
+}
+.content-horaire {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
 }
