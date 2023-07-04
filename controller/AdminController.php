@@ -12,6 +12,49 @@ class AdminController
     {
         $pdo = Connect::seConnecter();
 
+        // Afficher le nombre de table
+        $requeteTable = $pdo->query("
+            SELECT *
+            FROM nb_table
+        ");
+
+        // Modifier le nombre de table
+
+        if (isset($_POST['modifierTable'])) {
+
+            // Filtre
+            $nbTable = filter_input(INPUT_POST, 'table', FILTER_SANITIZE_NUMBER_INT);
+            // On vérifie si table est un nombre positif
+            if ($nbTable < 0) {
+                $_SESSION['message'] = "<div class='alert-table'>Le nombre de table doit être un nombre positif ou égal à 0</div>";
+                header("Location: index.php?action=admin&page=table");
+                exit;
+            }
+
+            if ($nbTable !== false) {
+
+                // Requete pour modifier le nombre de table
+                $requeteUpdateTable = $pdo->prepare("
+                    UPDATE nb_table
+                    SET nb_table = :nb_table
+                ");
+                $requeteUpdateTable->execute([
+                    'nb_table' => $nbTable
+                ]);
+
+                //Redirection
+                $_SESSION['message'] = "<div class='alert-table'>Le nombre de table a été modifié</div>";
+                header("Location: index.php?action=admin&page=table");
+                exit;
+
+            } else {
+                $_SESSION['message'] = "<div class='alert-table'>Champs incorrect</div>";
+                header("Location: index.php?action=admin&page=table");
+                exit;
+            }
+        }
+
+
         // Afficher les horaires
         $requeteHoraires = $pdo->query("
             SELECT *
@@ -40,7 +83,7 @@ class AdminController
             }
 
             $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-            if(empty($id)) {
+            if (empty($id)) {
                 $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Erreur URL id</div>";
                 header("Location: index.php?action=admin&page=horaire");
                 exit;
@@ -121,7 +164,7 @@ class AdminController
 
             $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-            if(empty($id)) {
+            if (empty($id)) {
                 $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Erreur URL id</div>";
                 header("Location: index.php?action=admin&page=horaire");
                 exit;
@@ -142,7 +185,6 @@ class AdminController
                 $_SESSION['alerte'] = "<div id='alert' class='alert-green'>L'horaire a été supprimée</div>";
                 header("Location: index.php?action=admin&page=horaire");
                 exit;
-
             } else {
                 $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Champs incorrect</div>";
                 header("Location: index.php?action=admin&page=horaire");
@@ -204,7 +246,7 @@ class AdminController
             }
 
             $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-            if(empty($id)) {
+            if (empty($id)) {
                 $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Erreur URL id</div>";
                 header("Location: index.php?action=admin");
                 exit;
@@ -293,7 +335,6 @@ class AdminController
                 $_SESSION['alerte'] = "<div id='alert' class='alert-green'>Le produit a été ajouté</div>";
                 header("Location: index.php?action=admin#$section");
                 exit;
-
             } else {
                 $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Champs incorrect</div>";
                 header("Location: index.php?action=admin#$section");
@@ -304,16 +345,16 @@ class AdminController
         // Supprimer un produit de la carte
 
         if (isset($_POST['supprimer']) && isset($_GET['id'])) {
-            
+
             // Filtre
             $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-            if(empty($id)) {
+            if (empty($id)) {
                 $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Erreur URL id</div>";
                 header("Location: index.php?action=admin");
                 exit;
             }
 
-            if($id !== false) {
+            if ($id !== false) {
 
                 // Requete pour supprimer le produit
                 $requeteSupprimerProduit = $pdo->prepare("
@@ -327,13 +368,11 @@ class AdminController
                 $_SESSION['alerte'] = "<div id='alert' class='alert-green'>Le produit a été supprimé de la carte</div>";
                 header("Location: index.php?action=admin");
                 exit;
-
             } else {
                 $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Erreur URL id</div>";
                 header("Location: index.php?action=admin");
                 exit;
             }
-
         }
 
         require "view/admin.php";
