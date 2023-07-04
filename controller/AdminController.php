@@ -20,7 +20,51 @@ class AdminController
 
         // Modifier les horaires
 
+        if (isset($_POST['modifierHoraire']) && isset($_GET['id'])) {
 
+            // Filtre
+            $jour = filter_input(INPUT_POST, 'jour', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // On vérifie si la longueur du jour est correct
+            if (strlen($jour) <= 0 || strlen($jour) > 50 || empty($jour)) {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Le jour doit contenir entre 1 et 50 caractères.</div>";
+                header("Location: index.php?action=admin&page=horaire");
+                exit;
+            }
+
+            $heure = filter_input(INPUT_POST, 'heure', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // On vérifie si la longueur de l'heure est correct
+            if (strlen($heure) <= 0 || strlen($heure) > 50 || empty($heure)) {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>L'heure doit contenir entre 1 et 50 caractères.</div>";
+                header("Location: index.php?action=admin&page=horaire");
+                exit;
+            }
+
+            $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+            if ($jour !== false && $heure !== false && $id !== false) {
+
+                // Requete pour modifier les horaires
+                $requeteUpdateHoraire = $pdo->prepare("
+                    UPDATE horaires
+                    SET jour = :jour, heures = :heures
+                    WHERE id_horaire = :id
+                ");
+                $requeteUpdateHoraire->execute([
+                    'jour' => $jour,
+                    'heures' => $heure,
+                    'id' => $id
+                ]);
+
+                // Redirection
+                $_SESSION['alerte'] = "<div id='alert' class='alert-green'>L'horaire a été modifiée</div>";
+                header("Location: index.php?action=admin&page=horaire");
+                exit;
+            } else {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Champs incorrect</div>";
+                header("Location: index.php?action=admin&page=horaire");
+                exit;
+            }
+        }
 
         // Afficher la carte
         $requeteDejeuner = $pdo->query("
