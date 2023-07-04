@@ -6,6 +6,7 @@ use Controller\RestaurantController; // On "use" le controller Restaurant
 use Controller\ReservationController;
 use Controller\AuthentificationController;
 use Controller\AdminController;
+use Controller\LivraisonController;
 
 // On autocharge les classes du projet
 spl_autoload_register(function ($class_name) {
@@ -16,6 +17,7 @@ $ctrlRestaurant = new RestaurantController(); // On instancie le controller Rest
 $ctrlReservation = new ReservationController();
 $ctrlAuthentification = new AuthentificationController();
 $ctrlAdmin = new AdminController();
+$ctrlLivraison = new LivraisonController();
 
 $id = (isset($_GET["id"])) ? $_GET["id"] : null;
 $section = (isset($_GET["section"])) ? $_GET["section"] : null;
@@ -40,5 +42,8 @@ if(isset($_GET["action"])) {
 
         // AdminController
         case "admin" : $ctrlAdmin -> admin($id, $section); break;
+        
+        // LivraisonController
+        case "livraison" : $ctrlLivraison -> livraison(); break;
     }
 }
