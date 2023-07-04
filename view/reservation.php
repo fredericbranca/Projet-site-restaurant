@@ -49,7 +49,6 @@ if (isset($_SESSION['message'])) {
         </div>
 
         <div class="choix-2 wrap">
-            <input type="hidden" id="creneau" name="creneau">
             <input class="bouton input-btn" type="submit" name="reservation" value="MIDI">
             <input class="bouton input-btn" type="submit" name="reservation" value="SOIR">
         </div>
