@@ -40,6 +40,11 @@ class AdminController
             }
 
             $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+            if(empty($id)) {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Erreur URL id</div>";
+                header("Location: index.php?action=admin&page=horaire");
+                exit;
+            }
 
             if ($jour !== false && $heure !== false && $id !== false) {
 
@@ -59,6 +64,85 @@ class AdminController
                 $_SESSION['alerte'] = "<div id='alert' class='alert-green'>L'horaire a été modifiée</div>";
                 header("Location: index.php?action=admin&page=horaire");
                 exit;
+            } else {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Champs incorrect</div>";
+                header("Location: index.php?action=admin&page=horaire");
+                exit;
+            }
+        }
+
+        // Ajouter un horaire
+
+        if (isset($_POST['ajouterHoraire'])) {
+
+            // Filtre
+            $jour = filter_input(INPUT_POST, 'jour', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // On vérifie si la longueur du jour est correct
+            if (strlen($jour) <= 0 || strlen($jour) > 50 || empty($jour)) {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Le jour doit contenir entre 1 et 50 caractères.</div>";
+                header("Location: index.php?action=admin&page=horaire");
+                exit;
+            }
+
+            $heure = filter_input(INPUT_POST, 'heure', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // On vérifie si la longueur de l'heure est correct
+            if (strlen($heure) <= 0 || strlen($heure) > 50 || empty($heure)) {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>L'heure doit contenir entre 1 et 50 caractères.</div>";
+                header("Location: index.php?action=admin&page=horaire");
+                exit;
+            }
+
+            if ($jour !== false && $heure !== false) {
+
+                // Requete pour ajouter un horaires
+                $requeteAddHoraire = $pdo->prepare("
+                    INSERT INTO horaires (jour, heures)
+                    VALUES (:jour, :heures)
+                ");
+                $requeteAddHoraire->execute([
+                    'jour' => $jour,
+                    'heures' => $heure,
+                ]);
+
+                // Redirection
+                $_SESSION['alerte'] = "<div id='alert' class='alert-green'>L'horaire a été ajoutée</div>";
+                header("Location: index.php?action=admin&page=horaire");
+                exit;
+            } else {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Champs incorrect</div>";
+                header("Location: index.php?action=admin&page=horaire");
+                exit;
+            }
+        }
+
+        // Supprimer un horaire
+
+        if (isset($_POST['supprimerHoraire']) && isset($_GET['id'])) {
+
+            $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+            if(empty($id)) {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Erreur URL id</div>";
+                header("Location: index.php?action=admin&page=horaire");
+                exit;
+            }
+
+            if ($id !== false) {
+
+                // Requete pour supprimer un horaire
+                $requeteSuprHoraire = $pdo->prepare("
+                    DELETE FROM horaires
+                    WHERE id_horaire = :id
+                ");
+                $requeteSuprHoraire->execute([
+                    'id' => $id
+                ]);
+
+                // Redirection
+                $_SESSION['alerte'] = "<div id='alert' class='alert-green'>L'horaire a été supprimée</div>";
+                header("Location: index.php?action=admin&page=horaire");
+                exit;
+
             } else {
                 $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Champs incorrect</div>";
                 header("Location: index.php?action=admin&page=horaire");
@@ -120,6 +204,11 @@ class AdminController
             }
 
             $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+            if(empty($id)) {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Erreur URL id</div>";
+                header("Location: index.php?action=admin");
+                exit;
+            }
 
             if ($produit !== false && $prix !== false && $id !== false) {
 
