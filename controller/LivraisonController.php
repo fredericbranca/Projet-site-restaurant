@@ -38,9 +38,34 @@ class LivraisonController
         ");
 
         // Ajouter les produits au panier
-        
+
 
         require "view/livraison.php";
+    }
+
+    // Vue panier.php
+    public function panier() 
+    {
+        $pdo = Connect::seConnecter();
+
+        if(!isset($_SESSION['users'])) {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+        $id = $_SESSION['users']['id'];
+
+        // Requete pour avoir le panier par rapport à l'id de l'user et le statut de la commande (0 : commande en cours donc panier avec produit, 1 : commande validé donc panier vide)
+        $requetePanier = $pdo -> prepare("
+            SELECT *
+            FROM commande
+            WHERE id_users = :id_user AND statut = 0
+        ");
+        $requetePanier->execute([
+            'id_user' => $id
+        ]);
+
+        require "view/panier.php";
     }
 
 }
