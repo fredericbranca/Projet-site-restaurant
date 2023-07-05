@@ -4,6 +4,7 @@ body {
 
 .header-link {
     padding-top: 50px;
+    padding-bottom: 100px;
 }
 .titre {
     font-size: 35px;
@@ -21,4 +22,96 @@ body {
 .panier-vide a {
     font-size: 30px;
     text-decoration: underline;
+}
+
+.content {
+    min-width: 1500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding-bottom: 50px;
+}
+.tableau {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1500px;
+    gap: 25px
+}
+.ligne {
+    border-top: 1px solid white;
+}
+.item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.item div {
+    width: 200px;
+}
+.item div:first-of-type {
+    width: 900px;
+}
+.prix, .quantite {
+    text-align: center;
+}
+.prixTotal {
+    text-align: right;
+}
+.fin {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 1500px;
+}
+.adresse, .payer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 400px;
+    font-size: 24px;
+}
+.livraison, .total {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.adresse a {
+    text-align: center;
+}
+select {
+    background-color: rgb(57, 57, 57);
+    border-radius: 5px;
+    height: 50px;
+    padding-left: 10px;
+    font-size: 19px;
+}
+select option {
+    font-size: 19px;
+}
+.qtt {
+    width: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 1px 5px;
+    margin-left: 30%;
+}
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+    background-color: black;
+    border: none;
+    cursor: pointer;
 }
