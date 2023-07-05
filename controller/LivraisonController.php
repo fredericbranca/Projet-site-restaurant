@@ -204,7 +204,7 @@ class LivraisonController
             exit;
         }
 
-        $id = $_SESSION['users']['id'];
+        $idUser = $_SESSION['users']['id'];
 
         // Requete pour avoir le panier par rapport à l'id de l'user et le statut de la commande (0 : commande en cours donc panier avec produit, 1 : commande validé donc panier vide)
         $requetePanier = $pdo->prepare("
@@ -213,7 +213,7 @@ class LivraisonController
             WHERE id_users = :id_user AND statut = 0
         ");
         $requetePanier->execute([
-            'id_user' => $id
+            'id_user' => $idUser
         ]);
 
         $panier = $requetePanier->fetch();
@@ -244,8 +244,100 @@ class LivraisonController
             }
 
             $requetePanier->execute([
-                'id_user' => $id
+                'id_user' => $idUser
             ]);
+
+            // Requete pour afficher les produits dans le panier
+            $requeteProduits = $pdo->prepare("
+                SELECT c.description, c.prix, pc.id_produit, pc.quantite
+                FROM carte c
+                JOIN produit_commande pc ON pc.id_produit = c.id_produit
+                WHERE pc.id_commande = :id_commande
+            ");
+            $requeteProduits->execute([
+                'id_commande' => $idCommande
+            ]);
+
+            // Augmenter quantité depuis le panier
+            if (isset($_POST['plus']) && isset($_GET['id'])) {
+
+                // Filtre
+                $idProduit = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+                if ($idProduit !== false) {
+                    $requeteAddQtt = $pdo->prepare("
+                        UPDATE produit_commande
+                        SET quantite = quantite + 1
+                        WHERE id_commande = :id_commande AND id_produit = :id_produit
+                    ");
+                    $requeteAddQtt->execute([
+                        'id_commande' => $idCommande,
+                        'id_produit' => $idProduit
+                    ]);
+
+                    header("Location: index.php?action=panier");
+                    exit;
+                } else {
+                    $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Action impossible</div>";
+                    header("Location: index.php?action=panier");
+                    exit;
+                }
+            }
+
+            // Diminuer quantité depuis le panier
+            if (isset($_POST['moins']) && isset($_GET['id'])) {
+
+                // Filtre
+                $idProduit = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+                if ($idProduit !== false) {
+                    $requeteAddQtt = $pdo->prepare("
+                        UPDATE produit_commande
+                        SET quantite = quantite - 1
+                        WHERE id_commande = :id_commande AND id_produit = :id_produit
+                    ");
+                    $requeteAddQtt->execute([
+                        'id_commande' => $idCommande,
+                        'id_produit' => $idProduit
+                    ]);
+
+                    // Vérifier si la quantité est passé à 0
+                    $requeteCheckQtt = $pdo->prepare("
+                        SELECT quantite
+                        FROM produit_commande
+                        WHERE id_commande = :id_commande AND id_produit = :id_produit
+                    ");
+                    $requeteCheckQtt->execute([
+                        'id_commande' => $idCommande,
+                        'id_produit' => $idProduit
+                    ]);
+
+                    $quantite = $requeteCheckQtt->fetchColumn();
+
+                    // Supprime le produit de la commande si = 0
+                    if ($quantite === 0) {
+                        $requeteSuprProduit = $pdo->prepare("
+                            DELETE FROM produit_commande
+                            WHERE id_commande = :id_commande AND id_produit = :id_produit
+                        ");
+                        $requeteSuprProduit->execute([
+                            'id_commande' => $idCommande,
+                            'id_produit' => $idProduit
+                        ]);
+                        $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Produit supprimé du panier</div>";
+                        header("Location: index.php?action=panier");
+                        exit;
+                    }
+
+                    header("Location: index.php?action=panier");
+                    exit;
+
+                } else {
+                    $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Action impossible</div>";
+                    header("Location: index.php?action=panier");
+                    exit;
+                }
+            }
         }
 
         require "view/panier.php";
