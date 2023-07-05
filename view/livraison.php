@@ -6,6 +6,9 @@ $entree = $requeteEntree->fetchAll();
 $plat = $requetePlat->fetchAll();
 $dessert = $requeteDessert->fetchAll();
 $boisson = $requeteBoisson->fetchAll();
+if (isset($requeteQttProduits)) {
+    $qttProduits = $requeteQttProduits->fetchAll();
+}
 
 ?>
 
@@ -21,12 +24,21 @@ $boisson = $requeteBoisson->fetchAll();
             <div class="content">
                 <?php
                 foreach ($entree as $description) {
+                    $idProduit = $description['id_produit'];
+                    $quantite = 0;
+                    if (isset($qttProduits)) {
+                        foreach ($qttProduits as $qttProduit) {
+                            if ($qttProduit['id_produit'] === $idProduit) {
+                                $quantite = $qttProduit['quantite'];
+                            }
+                        }
+                    }
                 ?>
                     <div class="produit">
                         <p><?= $description['description'] ?></p>
                         <p><?= $description['prix_format'] ?>€</p>
-                        <input type="hidden" id="produit" name="<?= $description['id_produit'] ?>">
-                        <input class="input-qqt" type="number" id="qqt" name="qqt[]" min="0" step="1" required autocomplete="off" value="0">
+                        <input type="hidden" id="produit" name="produit[]" value="<?= $description['id_produit'] ?>">
+                        <input class="input-qtt" type="number" id="qtt" name="qtt[]" min="0" step="1" required autocomplete="off" value="<?= $quantite ?>">
                     </div>
                 <?php
                 }
@@ -38,12 +50,21 @@ $boisson = $requeteBoisson->fetchAll();
             <div class="content">
                 <?php
                 foreach ($plat as $description) {
+                    $idProduit = $description['id_produit'];
+                    $quantite = 0;
+                    if (isset($qttProduits)) {
+                        foreach ($qttProduits as $qttProduit) {
+                            if ($qttProduit['id_produit'] === $idProduit) {
+                                $quantite = $qttProduit['quantite'];
+                            }
+                        }
+                    }
                 ?>
                     <div class="produit">
                         <p><?= $description['description'] ?></p>
                         <p><?= $description['prix_format'] ?>€</p>
-                        <input type="hidden" id="produit" name="<?= $description['id_produit'] ?>">
-                        <input class="input-qqt" type="number" id="qqt" name="qqt[]" min="0" step="1" required autocomplete="off" value="0">
+                        <input type="hidden" id="produit" name="produit[]" value="<?= $description['id_produit'] ?>">
+                        <input class="input-qtt" type="number" id="qtt" name="qtt[]" min="0" step="1" required autocomplete="off" value="<?= $quantite ?>">
                     </div>
                 <?php
                 }
@@ -55,12 +76,21 @@ $boisson = $requeteBoisson->fetchAll();
             <div class="content">
                 <?php
                 foreach ($dessert as $description) {
+                    $idProduit = $description['id_produit'];
+                    $quantite = 0;
+                    if (isset($qttProduits)) {
+                        foreach ($qttProduits as $qttProduit) {
+                            if ($qttProduit['id_produit'] === $idProduit) {
+                                $quantite = $qttProduit['quantite'];
+                            }
+                        }
+                    }
                 ?>
                     <div class="produit">
                         <p><?= $description['description'] ?></p>
                         <p><?= $description['prix_format'] ?>€</p>
-                        <input type="hidden" id="produit" name="<?= $description['id_produit'] ?>">
-                        <input class="input-qqt" type="number" id="qqt" name="qqt[]" min="0" step="1" required autocomplete="off" value="0">
+                        <input type="hidden" id="produit" name="produit[]" value="<?= $description['id_produit'] ?>">
+                        <input class="input-qtt" type="number" id="qtt" name="qtt[]" min="0" step="1" required autocomplete="off" value="<?= $quantite ?>">
                     </div>
                 <?php
                 }
@@ -72,12 +102,21 @@ $boisson = $requeteBoisson->fetchAll();
             <div class="content">
                 <?php
                 foreach ($boisson as $description) {
+                    $idProduit = $description['id_produit'];
+                    $quantite = 0;
+                    if (isset($qttProduits)) {
+                        foreach ($qttProduits as $qttProduit) {
+                            if ($qttProduit['id_produit'] === $idProduit) {
+                                $quantite = $qttProduit['quantite'];
+                            }
+                        }
+                    }
                 ?>
                     <div class="produit">
                         <p><?= $description['description'] ?></p>
                         <p><?= $description['prix_format'] ?>€</p>
-                        <input type="hidden" id="produit" name="<?= $description['id_produit'] ?>">
-                        <input class="input-qqt" type="number" id="qqt" name="qqt[]" min="0" step="1" required autocomplete="off" value="0">
+                        <input type="hidden" id="produit" name="produit[]" value="<?= $description['id_produit'] ?>">
+                        <input class="input-qtt" type="number" id="qtt" name="qtt[]" min="0" step="1" required autocomplete="off" value="<?= $quantite ?>">
                     </div>
                 <?php
                 }
@@ -85,7 +124,7 @@ $boisson = $requeteBoisson->fetchAll();
             </div>
         </div>
         <div class="wrap">
-            <a class="bouton input-btn" href="index.php?action=panier">VOIR LE PANIER</a>
+            <a class="bouton input-btn" id="panier" href="index.php?action=panier">VOIR LE PANIER</a>
             <input class="bouton input-btn" type="submit" name="submit" value="AJOUTER AU PANIER">
         </div>
     </form>
