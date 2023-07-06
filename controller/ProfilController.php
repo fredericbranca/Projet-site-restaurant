@@ -53,7 +53,7 @@ class ProfilController
                     $adresseUser = $requeteAdresses->fetchAll();
                     $nbAdresse = count($adresseUser);
 
-                    if($nbAdresse > 0 && $defaut == 1) {
+                    if($defaut == 1) {
                         $requeteChangeDefaut = $pdo->prepare("
                             UPDATE adresse
                             SET defaut = 0
@@ -97,6 +97,33 @@ class ProfilController
 
         }
 
+        // Supprimer une adresse
+        if(isset($_GET['page']) && $_GET['page'] === 'adresses' && isset($_GET['supprimer'])) {
+
+            $idAdresse = filter_input(INPUT_GET, 'supprimer', FILTER_VALIDATE_INT);
+            
+            if($idAdresse !== false) {
+                $requeteSupprimerAdresse = $pdo->prepare("
+                    DELETE FROM adresse
+                    WHERE id_user = :id_user AND id_adresse = :id_adresse
+                ");
+                $requeteSupprimerAdresse->execute([
+                    'id_user' => $idUser,
+                    'id_adresse' => $idAdresse
+                ]);
+            
+                $_SESSION['alerte'] = "<div id='alert' class='alert-green'>Adresse supprimé avec succès</div>";
+                header("Location: index.php?action=profil&page=adresses");
+                exit;
+                
+            } else {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Une erreur s'est produit, l'adresse n'a pas été supprimée</div>";
+                header("Location: index.php?action=profil&page=adresses");
+                exit;
+            }
+        }
+
+        
 
         require "view/profil.php";
     }
