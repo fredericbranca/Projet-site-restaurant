@@ -26,7 +26,7 @@ if (isset($_SESSION['message'])) {
         <a href="index.php?action=profil&page=adresses">Adresses</a>
         <a href="index.php?action=profil&page=messagerie">Messagerie</a>
         <?php
-        if ($_SESSION['users']['admin'] = 1) {
+        if ($_SESSION['users']['admin'] == 1) {
         ?>
             <a href="index.php?action=admin">Administration</a>
         <?php

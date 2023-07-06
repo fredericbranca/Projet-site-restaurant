@@ -11,7 +11,7 @@ class AdminController
     public function admin($id)
     {
 
-        if (!isset($_SESSION['users']) || $_SESSION['users']['admin'] != 1) {
+        if (!isset($_SESSION['users']) || $_SESSION['users']['admin'] == 0) {
             $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Accès non autorisé</div>";
             header("Location: index.php?action=login");
             exit;
