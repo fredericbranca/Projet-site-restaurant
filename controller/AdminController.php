@@ -10,6 +10,13 @@ class AdminController
     /* Afficher les horaires' */
     public function admin($id)
     {
+
+        if (!isset($_SESSION['users']) || $_SESSION['users']['admin'] != 1) {
+            $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Accès non autorisé</div>";
+            header("Location: index.php?action=login");
+            exit;
+        }
+
         $pdo = Connect::seConnecter();
 
         // Afficher le nombre de table
