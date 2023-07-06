@@ -7,6 +7,7 @@ use Controller\ReservationController;
 use Controller\AuthentificationController;
 use Controller\AdminController;
 use Controller\LivraisonController;
+use Controller\ProfilController;
 
 // On autocharge les classes du projet
 spl_autoload_register(function ($class_name) {
@@ -18,6 +19,7 @@ $ctrlReservation = new ReservationController();
 $ctrlAuthentification = new AuthentificationController();
 $ctrlAdmin = new AdminController();
 $ctrlLivraison = new LivraisonController();
+$ctrlProfil = new ProfilController();
 
 $id = (isset($_GET["id"])) ? $_GET["id"] : null;
 $section = (isset($_GET["section"])) ? $_GET["section"] : null;
@@ -46,5 +48,8 @@ if(isset($_GET["action"])) {
         // LivraisonController
         case "livraison" : $ctrlLivraison -> livraison(); break;
         case "panier" : $ctrlLivraison -> panier(); break;
+
+        // ProfilController
+        case "profil" : $ctrlProfil -> profil(); break;
     }
 }
