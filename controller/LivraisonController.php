@@ -12,6 +12,7 @@ class LivraisonController
     {
 
         if (!isset($_SESSION['users'])) {
+            $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Veuillez vous connecter pour accéder à la livraison</div>";
             header("Location: index.php?action=login");
             exit;
         }
@@ -200,6 +201,7 @@ class LivraisonController
         $pdo = Connect::seConnecter();
 
         if (!isset($_SESSION['users'])) {
+            $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Veuillez vous connecter pour accéder à la livraison</div>";
             header("Location: index.php?action=login");
             exit;
         }
