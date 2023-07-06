@@ -340,6 +340,27 @@ class LivraisonController
                     exit;
                 }
             }
+
+            // Afficher l'adresse par défaut
+            $requeteAdresseDefaut = $pdo->prepare("
+                SELECT *
+                FROM adresse
+                WHERE id_user = :id_user AND defaut = 1
+            ");
+            $requeteAdresseDefaut->execute([
+                'id_user' => $idUser
+            ]);
+
+            // Afficher les autres adresses
+            $requeteAdresse = $pdo->prepare("
+                SELECT *
+                FROM adresse
+                WHERE id_user = :id_user AND defaut = 0
+            ");
+            $requeteAdresse->execute([
+                'id_user' => $idUser
+            ]);
+
         }
 
         require "view/panier.php";
