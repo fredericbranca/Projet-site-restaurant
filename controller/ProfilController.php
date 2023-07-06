@@ -250,7 +250,7 @@ class ProfilController
 
         // Annuler une réservation
 
-        if(isset($_POST['annuler']) && isset($_GET['id'])) {
+        if(isset($_POST['annuler']) && isset($_GET['id']) && isset($_SESSION['users']) && $_SESSION['users']['admin'] == 1) {
 
             $idRes = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
