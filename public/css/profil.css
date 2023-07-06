@@ -96,3 +96,65 @@ body {
     width: 30px;
     height: 30px;
 }
+
+.reservation {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+.reservation-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    width: fit-content;
+}
+.reservation-content div {
+    width: 200px;
+}
+.btn-annuler {
+    padding: 5px;
+    width: 100px;
+    color: black;
+    font-weight: bold;
+}
+.ligne2 {
+    height: 1px;
+    background: white;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.detailsContent {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    width: fit-content;
+}
+.detailsContent div {
+    width: 300px;
+}
+
+.noCommande {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 24px;
+    gap: 10px;
+    background-color: rgb(206, 229, 205);
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+}
+.noCommande a, i {
+    font-weight: bold;
+    color: rgb(58, 135, 53)
+}
+.noCommande a {
+    text-decoration: underline;
+}
+.noCommande div {
+    color: rgb(58, 135, 53)
+}
