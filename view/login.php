@@ -1,10 +1,5 @@
 <?php
 
-if (isset($_SESSION['user'])) {
-    header("Location: index.php?action=profil");
-    exit;
-}
-
 ob_start();
 
 if (isset($_SESSION['message'])) {
