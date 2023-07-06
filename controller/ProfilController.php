@@ -139,21 +139,22 @@ class ProfilController
 
         if (isset($_POST['modifier']) && isset($_GET['id'])) {
 
-            
+            $idAdresse = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
             // Filtre
             $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $adresse = filter_input(INPUT_POST, 'adresse', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $CP = filter_input(INPUT_POST, 'CP', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $ville = filter_input(INPUT_POST, 'ville', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $numero = filter_input(INPUT_POST, 'num', FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/^[0-9]{9,10}$/'))); //vérifie que le numéro de téléphone est composé exactement de 10 chiffres de 0 à 9
+            $numero = filter_input(INPUT_POST, 'num', FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/^[0-9]{10}$/'))); //vérifie que le numéro de téléphone est composé exactement de 10 chiffres de 0 à 9
             $defaut = filter_input(INPUT_POST, 'defaut', FILTER_VALIDATE_BOOLEAN);
             if ($defaut) {
                 $defaut = 1;
             } else {
                 $defaut = 0;
             }
-            $idAdresse = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+            
 
             if ($nom !== false && $prenom !== false && $adresse !== false && $CP !== false && $ville !== false && $numero !== false && $defaut !== false && $idAdresse !== false) {
 
@@ -215,8 +216,72 @@ class ProfilController
             'id_user' => $idUser
         ]);
 
-        // Afficher les réservations (pour l'admin)
-        
+        // Afficher les réservations (pour l'admin) en fonction de la date
+
+        if(isset($_POST['dateRes'])) {
+
+            $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if($date !== false) {
+                
+                $timestamp = strtotime($date);
+                $_SESSION['dateFormat'] = date('d - m - Y', $timestamp);
+
+                $requeteReservation = $pdo->prepare("
+                    SELECT *
+                    FROM reservation
+                    WHERE date = :date
+                ");
+                $requeteReservation->execute([
+                    'date' => $date
+                ]);
+
+                $_SESSION['dateReservation'] = $requeteReservation->fetchAll();
+                
+                header("Location: index.php?action=profil&page=compte");
+                exit;
+
+            } else {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Erreur champs</div>";
+                header("Location: index.php?action=profil&page=compte");
+                exit;
+            }
+        }
+
+        // Annuler une réservation
+
+        if(isset($_POST['annuler']) && isset($_GET['id'])) {
+
+            $idRes = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+            if($idRes !== false) {
+
+                $requeteSupprimerTable = $pdo->prepare("
+                    DELETE FROM table_reserve
+                    WHERE id_reservation = :id
+                ");
+                $requeteSupprimerTable->execute([
+                    'id' => $idRes
+                ]);
+
+                $requeteAnnulerRes = $pdo->prepare("
+                    DELETE FROM reservation
+                    WHERE id_reservation = :id
+                ");
+                $requeteAnnulerRes->execute([
+                    'id' => $idRes
+                ]);
+
+                $_SESSION['alerte'] = "<div id='alert' class='alert-green'>Réservation annulée avec succès</div>";
+                header("Location: index.php?action=profil&page=compte");
+                exit;
+
+            } else {
+                $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Action non autorisée</div>";
+                header("Location: index.php?action=profil&page=compte");
+                exit;
+            }
+        }
 
         require "view/profil.php";
     }
