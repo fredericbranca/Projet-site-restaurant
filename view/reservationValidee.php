@@ -29,7 +29,7 @@ if (isset($_SESSION['accesReservationValidee']) && $_SESSION['accesReservationVa
 
         <?= $message ?>
 
-        <a class="bouton" href="index.php?action=carte&menus"><span>RETOURNER À L'ACCUEIL</span></a>
+        <a class="bouton" href="index.php?action=accueil"><span>RETOURNER À L'ACCUEIL</span></a>
 
     </section>
 
