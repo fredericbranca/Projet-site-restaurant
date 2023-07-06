@@ -376,17 +376,20 @@ class LivraisonController
                 }
                 //ajout de la livraison
                 $prix += 3;
+                // date du paiement
+                $date = date("Y-m-d");
 
                 if($idAdresse !== false && !empty($idAdresse)) {
                     $requettePayerCommande = $pdo->prepare("
                         UPDATE commande
-                        SET statut = 1, id_adresse = :id_adresse, prix_total = :prix
+                        SET statut = 1, id_adresse = :id_adresse, prix_total = :prix, date = :date
                         WHERE id_commande = :id_commande
                     ");
                     $requettePayerCommande->execute([
                         'id_adresse' => $idAdresse,
                         'prix' => $prix,
-                        'id_commande' => $idCommande
+                        'id_commande' => $idCommande,
+                        'date' => $date
                     ]);
 
                     $_SESSION['PaiementValidee'] = 1;
