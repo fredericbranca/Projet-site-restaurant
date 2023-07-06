@@ -48,6 +48,7 @@ if(isset($_GET["action"])) {
         // LivraisonController
         case "livraison" : $ctrlLivraison -> livraison(); break;
         case "panier" : $ctrlLivraison -> panier(); break;
+        case "panierPayer" : include "view/panierPayer.php"; break;
 
         // ProfilController
         case "profil" : $ctrlProfil -> profil(); break;

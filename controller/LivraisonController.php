@@ -361,7 +361,48 @@ class LivraisonController
                 'id_user' => $idUser
             ]);
 
+
+            // Payer le panier
+            if(isset($_POST['submit'])) {
+    
+                //Filtre
+                $idAdresse = filter_input(INPUT_POST, 'adresse', FILTER_VALIDATE_INT);
+
+                //Prix
+                $prix = 0;
+                $commandes = $requeteProduits->fetchAll();
+                foreach($commandes as $commande) {
+                    $prix += $commande['prix'] * $commande['quantite'];
+                }
+                //ajout de la livraison
+                $prix += 3;
+
+                if($idAdresse !== false && !empty($idAdresse)) {
+                    $requettePayerCommande = $pdo->prepare("
+                        UPDATE commande
+                        SET statut = 1, id_adresse = :id_adresse, prix_total = :prix
+                        WHERE id_commande = :id_commande
+                    ");
+                    $requettePayerCommande->execute([
+                        'id_adresse' => $idAdresse,
+                        'prix' => $prix,
+                        'id_commande' => $idCommande
+                    ]);
+
+                    $_SESSION['PaiementValidee'] = 1;
+                    $_SESSION['message'] = "<div class='alert-2'>Le paiement a été validé</div>";
+                    header("Location: index.php?action=panierPayer");
+                    exit;
+
+                } else {
+                    $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Une erreur s'est produite</div>";
+                    header("Location: index.php?action=panier");
+                    exit;
+                }
+    
+            }
         }
+
 
         require "view/panier.php";
     }

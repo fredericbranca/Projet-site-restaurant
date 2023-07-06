@@ -80,63 +80,65 @@ if (!$panier) {
             }
             ?>
         </div>
-        <div class="fin">
-            <div class="adresse">
-                <div>Adresse de livraison</div>
-                <?php
-                if ($adresseDefaut) {
-                ?>
-                    <select name="adresse" id="adresse">
-                        <option value="<?= $adresseDefaut['id_adresse'] ?>"><?= $adresseDefaut['adresse'] ?></option>
-                        <?php
-                        if (isset($adressesAutre)) {
-                            foreach ($adressesAutre as $adresse) {
-                        ?>
-                                <option value="<?= $adresse['id_adresse'] ?>"><?= $adresse['adresse'] ?></option>
-                        <?php
+        <form method="POST" action="index.php?action=panier" enctype="multipart/form-data">
+            <div class="fin">
+                <div class="adresse">
+                    <div>Adresse de livraison</div>
+                    <?php
+                    if ($adresseDefaut) {
+                    ?>
+                        <select name="adresse" id="adresse">
+                            <option value="<?= $adresseDefaut['id_adresse'] ?>"><?= $adresseDefaut['adresse'] ?></option>
+                            <?php
+                            if (isset($adressesAutre)) {
+                                foreach ($adressesAutre as $adresse) {
+                            ?>
+                                    <option value="<?= $adresse['id_adresse'] ?>"><?= $adresse['adresse'] ?></option>
+                            <?php
+                                }
                             }
-                        }
-                        ?>
-                    </select>
+                            ?>
+                        </select>
 
-                <?php
-                } elseif (!$adresseDefaut && $adressesAutre) {
-                ?>
-                    <select name="adresse" id="adresse">
-                        <option value="">Choisir une adresse</option>
-                        <?php
-                        foreach ($adressesAutre as $adresse) {
-                        ?>
-                            <option value="<?= $adresse['id_adresse'] ?>"><?= $adresse['adresse'] ?></option>
-                        <?php
-                        }
-                        ?>
-                    </select>
-                <?php
-                } else {
-                ?>
-                    <select name="adresse" id="adresse">
-                        <option value="">Aucune adresse enregistrée</option>
-                    </select>
-                <?php
-                }
-                ?>
+                    <?php
+                    } elseif (!$adresseDefaut && $adressesAutre) {
+                    ?>
+                        <select name="adresse" id="adresse">
+                            <option value="">Choisir une adresse</option>
+                            <?php
+                            foreach ($adressesAutre as $adresse) {
+                            ?>
+                                <option value="<?= $adresse['id_adresse'] ?>"><?= $adresse['adresse'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    <?php
+                    } else {
+                    ?>
+                        <select name="adresse" id="adresse">
+                            <option value="">Aucune adresse enregistrée</option>
+                        </select>
+                    <?php
+                    }
+                    ?>
 
-                <a class="bouton btn-register" href="index.php?action=profil&page=ajouterAdresse"><span>NOUVELLE ADRESSE</span></a>
-            </div>
-            <div class="payer">
-                <div class="livraison">
-                    <div>Livraison</div>
-                    <div>3 €</div>
+                    <a class="bouton btn-register" href="index.php?action=profil&page=ajouterAdresse"><span>NOUVELLE ADRESSE</span></a>
                 </div>
-                <div class="total">
-                    <div>Total</div>
-                    <div><?= $total + 3 ?> €</div>
+                <div class="payer">
+                    <div class="livraison">
+                        <div>Livraison</div>
+                        <div>3 €</div>
+                    </div>
+                    <div class="total">
+                        <div>Total</div>
+                        <div><?= $total + 3 ?> €</div>
+                    </div>
+                    <input class="bouton input-btn" type="submit" name="submit" value="PAYER">
+                    <img src="public/img/sous-bouton.png">
                 </div>
-                <input class="bouton input-btn" type="submit" name="submit" value="PAYER">
-                <img src="public/img/sous-bouton.png">
             </div>
-        </div>
+        </form>
     </div>
 
 <?php
