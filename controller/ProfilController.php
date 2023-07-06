@@ -9,12 +9,13 @@ class ProfilController
 {
     public function profil()
     {
-        $pdo = Connect::seConnecter();
-
+        // Vérification accès
         if (!isset($_SESSION['users'])) {
             header("Location: index.php?action=login");
             exit;
         }
+
+        $pdo = Connect::seConnecter();
 
         $idUser = $_SESSION['users']['id'];
 
@@ -203,6 +204,19 @@ class ProfilController
                 exit;
             }
         }
+
+        // Historique de commande
+        $requeteCommande = $pdo->prepare("
+            SELECT *, DATE_FORMAT(date, '%d - %m - %Y')
+            FROM commande
+            WHERE id_users = :id_user
+        ");
+        $requeteCommande->execute([
+            'id_user' => $idUser
+        ]);
+
+        // Afficher les réservations (pour l'admin)
+        
 
         require "view/profil.php";
     }
