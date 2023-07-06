@@ -91,7 +91,7 @@ if (
                     <input class="input-adresse" type="text" id="adresse" name="adresse" maxlength="255" required value="<?= $adresse['adresse'] ?>" autocomplete="off">
                     <input class="input-adresse" type="text" id="CP" name="CP" required value="<?= $adresse['cp'] ?>" autocomplete="off">
                     <input class="input-adresse" type="text" id="ville" name="ville" maxlength="50" required value="<?= $adresse['ville'] ?>" autocomplete="off">
-                    <input class="input-adresse" type="text" id="num" name="num" maxlength="10" required value="<?= $adresse['telephone'] ?>" autocomplete="off">
+                    <input class="input-adresse" type="text" id="num" name="num" maxlength="10" required value="0<?= $adresse['telephone'] ?>" autocomplete="off">
                     <?php
                     if ($adresse['defaut'] == 0) {
                     ?>
@@ -170,56 +170,112 @@ if (
                 }
 
             ?>
-                <div>Bonjour <?= $_SESSION['users']['nom'] . ' ' . $_SESSION['users']['prenom'] ?> </div>
-                <div>Historique de commande</div>
-                <?php
-                if ($commandes) {
-                    foreach ($commandes as $commande) {
-                ?>
-                        <div><?= $commande['date'] ?></div>
-                        <div><?= $commande['prix_total'] ?> €</div>
+                <div class="sous-titre">Bonjour <?= $_SESSION['users']['nom'] . ' ' . $_SESSION['users']['prenom'] ?> </div>
+                <div class="reservation">
+                    <div class="sous-titre">Historique de commande</div>
                     <?php
-                    }
-                } else {
+                    if ($commandes) {
                     ?>
-                    <div>
-                        <i class="fa-solid fa-check"></i>
-                        <a href="index.php?action=livraison">Passez votre première commande.</a>
-                        <div>Vous n'avez pas encore passé de commande</div>
-                    </div>
-                <?php
-                }
-                ?>
-                <div class="détails">
-                    <div>Détails du compte</div>
-                    <div class="detailsContent">
-                        <div>Utilisateur</div>
-                        <div><?= $_SESSION['users']['nom'] . ' ' . $_SESSION['users']['prenom'] ?></div>
-                        <div class="ligneDetails"></div>
-                    </div>
-                    <div class="detailsContent">
-                        <div>Email</div>
-                        <div><?= $_SESSION['users']['email'] ?></div>
-                        <div class="ligneDetails"></div>
-                    </div>
+                        <div class="reservation-content">
+                            <div>Date</div>
+                            <div>Prix</div>
+                        </div>
+                        <div class="ligne2"></div>
+                        <?php
+                        foreach ($commandes as $commande) {
+                        ?>
+                            <div class="reservation-content">
+                                <div><?= $commande['date'] ?></div>
+                                <div><?= $commande['prix_total'] ?> €</div>
+                            </div>
+                        <?php
+                        }
+                        ?>
+
+                    <?php
+                    } else {
+                    ?>
+                        <div class="noCommande">
+                            <i class="fa-solid fa-check"></i>
+                            <a href="index.php?action=livraison">Passez votre première commande.</a>
+                            <div>Vous n'avez pas encore passé de commande.</div>
+                        </div>
                 </div>
             <?php
+                    }
+            ?>
+            <div class="details">
+                <div class="sous-titre">Détails du compte</div>
+                <div class="detailsContent">
+                    <div>Utilisateur</div>
+                    <div><?= $_SESSION['users']['nom'] . ' ' . $_SESSION['users']['prenom'] ?></div>
+                </div>
+                <div class="ligne2"></div>
+                <div class="detailsContent">
+                    <div>Email</div>
+                    <div><?= $_SESSION['users']['email'] ?></div>
+                </div>
+                <div class="ligne2"></div>
+            </div>
+        <?php
             }
 
             // Vue Compte admin
 
             elseif ($_SESSION['users']['admin'] == 1 && isset($_GET['page']) && $_GET['page'] === 'compte') {
+        ?>
+            <div>Bonjour <?= $_SESSION['users']['nom'] . ' ' . $_SESSION['users']['prenom'] ?> (Administrateur)</div>
+            <div>Réservation client</div>
+            <form method="POST" action="index.php?action=profil" enctype="multipart/form-data">
+                <input class="input-theme" type="date" name="date" min="<?= date("Y-m-d") ?>" max="<?= date("Y") + 1 ?>-03-31" required>
+                <button class="bouton btn-ajouter" type="submit" name="dateRes" id="submit">Afficher les Réservations</button>
+            </form>
+            <?php
+
+                if (isset($_SESSION['dateReservation'])) {
+                    $reservations = $_SESSION['dateReservation'];
             ?>
-                <div>Bonjour <?= $_SESSION['users']['nom'] . ' ' . $_SESSION['users']['prenom'] ?> (Administrateur)</div>
-                <div>Réservation client</div>
-                
-        <?php
+                <div class="reservation">
+                    <div>Date : <?= $_SESSION['dateFormat'] ?></div>
+                    <div class="reservation-content">
+                        <div>Nombre de personnes</div>
+                        <div>Créneau</div>
+                        <div>Nom - Prénom</div>
+                        <div>Téléphone</div>
+                        <div>Email</div>
+                    </div>
+                    <div class="ligne2"></div>
+                    <?php
+
+                    foreach ($reservations as $reservation) {
+                    ?>
+                        <div class="reservation-content">
+                            <div><?= $reservation['nombre'] ?> personnes</div>
+                            <div><?= $reservation['creneau'] ?></div>
+                            <div><?= ucfirst($reservation['civilite']) . ' ' . $reservation['nom'] . ' ' . $reservation['prenom'] ?></div>
+                            <div>0<?= $reservation['telephone'] ?></div>
+                            <div><?= $reservation['email'] ?></div>
+                            <form class="ajouterAdresse" method="POST" action="index.php?action=profil&id=<?= $reservation['id_reservation'] ?>" enctype="multipart/form-data">
+                                <button class="bouton btn-annuler" type="submit" name="annuler" id="submit">ANNULER</button>
+                            </form>
+                        </div>
+                        <div class="ligne2"></div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            <?php
+                }
+            ?>
+
+    <?php
+                unset($_SESSION['dateReservation']);
             }
         } else {
             header("Location: index.php?action=profil&page=compte");
             exit;
         }
-        ?>
+    ?>
         </div>
     </div>
 
