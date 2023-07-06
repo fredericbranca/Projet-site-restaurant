@@ -100,7 +100,7 @@ class ReservationController
             $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $numero = filter_input(INPUT_POST, 'numero', FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/^[0-9]{10}$/'))); //vérifie que le numéro de téléphone est composé exactement de 10 chiffres de 0 à 9
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-            
+
             $date = $_SESSION['date'];
             $personne = $_SESSION['couvert'];
             $creneau = $_SESSION['creneau'];
@@ -125,8 +125,8 @@ class ReservationController
                 ]);
 
                 $requeteTableReservee = $pdo->prepare("
-                    INSERT INTO table_reserve (nb_table, date, creneau)
-                    VALUES (:table, :date, :creneau)
+                    INSERT INTO table_reserve (id_reservation, nb_table, date, creneau)
+                    VALUES (LAST_INSERT_ID(), :table, :date, :creneau)
                 ");
                 $requeteTableReservee->execute([
                     'table' => $nbTable,
