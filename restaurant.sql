@@ -28,16 +28,14 @@ CREATE TABLE IF NOT EXISTS `adresse` (
   `adresse` varchar(255) NOT NULL,
   `cp` int NOT NULL,
   `ville` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `telephone` int NOT NULL,
+  `telephone` varchar(20) NOT NULL,
   `defaut` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_adresse`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.adresse : ~2 rows (environ)
+-- Listage des données de la table restaurant.adresse : ~1 rows (environ)
 INSERT INTO `adresse` (`id_adresse`, `id_user`, `nom`, `prenom`, `adresse`, `cp`, `ville`, `telephone`, `defaut`) VALUES
-	(11, 12, 'Branca', 'Frederic', '19pl', 67000, 'Strasbourg', 606060606, 0),
-	(12, 12, 'Test', 'test', 'test', 12345, 'test', 1234567891, 0),
-	(13, 17, 'test', 'test', 'test', 57800, 'test', 1234567894, 1);
+	(14, 17, 'test', 'test', 'test', 67000, 'stras', '608646563', 1);
 
 -- Listage de la structure de table restaurant. carte
 CREATE TABLE IF NOT EXISTS `carte` (
@@ -80,13 +78,11 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `statut` tinyint NOT NULL DEFAULT '0',
   `id_adresse` int DEFAULT NULL,
   `prix_total` float DEFAULT NULL,
+  `date` date DEFAULT NULL,
   PRIMARY KEY (`id_commande`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.commande : ~4 rows (environ)
-INSERT INTO `commande` (`id_commande`, `id_users`, `statut`, `id_adresse`, `prix_total`) VALUES
-	(27, 12, 1, 11, 52),
-	(28, 17, 1, 13, 32);
+-- Listage des données de la table restaurant.commande : ~2 rows (environ)
 
 -- Listage de la structure de table restaurant. horaires
 CREATE TABLE IF NOT EXISTS `horaires` (
@@ -102,12 +98,29 @@ INSERT INTO `horaires` (`id_horaire`, `jour`, `heures`) VALUES
 	(2, 'SAMEDI', '12h00 - 15h00 . 18h30 - 23h30'),
 	(5, 'DIMANCHE', '12h00 - 15h00 . 18h30 - 22h30');
 
+-- Listage de la structure de table restaurant. messagerie
+CREATE TABLE IF NOT EXISTS `messagerie` (
+  `id_message` int NOT NULL AUTO_INCREMENT,
+  `sender_id` int NOT NULL,
+  `receiver_id` int NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `conversation_id` int NOT NULL,
+  PRIMARY KEY (`id_message`) USING BTREE,
+  KEY `sender_id` (`sender_id`),
+  KEY `receiver_id` (`receiver_id`),
+  CONSTRAINT `FK_messagerie_users` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `FK_messagerie_users_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Listage des données de la table restaurant.messagerie : ~0 rows (environ)
+
 -- Listage de la structure de table restaurant. nb_table
 CREATE TABLE IF NOT EXISTS `nb_table` (
   `nb_table` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.nb_table : ~0 rows (environ)
+-- Listage des données de la table restaurant.nb_table : ~1 rows (environ)
 INSERT INTO `nb_table` (`nb_table`) VALUES
 	(20);
 
@@ -117,16 +130,12 @@ CREATE TABLE IF NOT EXISTS `produit_commande` (
   `id_produit` int NOT NULL,
   `quantite` int NOT NULL,
   KEY `id_commande` (`id_commande`),
+  KEY `id_produit` (`id_produit`),
+  CONSTRAINT `FK_produit_commande_carte` FOREIGN KEY (`id_produit`) REFERENCES `carte` (`id_produit`),
   CONSTRAINT `FK_produit_commande_commande` FOREIGN KEY (`id_commande`) REFERENCES `commande` (`id_commande`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.produit_commande : ~1 rows (environ)
-INSERT INTO `produit_commande` (`id_commande`, `id_produit`, `quantite`) VALUES
-	(27, 9, 2),
-	(27, 4, 1),
-	(28, 16, 1),
-	(28, 22, 1),
-	(28, 23, 3);
+-- Listage des données de la table restaurant.produit_commande : ~0 rows (environ)
 
 -- Listage de la structure de table restaurant. reservation
 CREATE TABLE IF NOT EXISTS `reservation` (
@@ -137,22 +146,24 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `civilite` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `prenom` varchar(50) NOT NULL,
-  `telephone` int NOT NULL,
+  `telephone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `email` varchar(255) NOT NULL,
-  `statut` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_reservation`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.reservation : ~1 rows (environ)
+-- Listage des données de la table restaurant.reservation : ~0 rows (environ)
 
 -- Listage de la structure de table restaurant. table_reserve
 CREATE TABLE IF NOT EXISTS `table_reserve` (
+  `id_reservation` int NOT NULL,
   `nb_table` float NOT NULL DEFAULT '0',
   `date` date NOT NULL,
-  `creneau` varchar(4) NOT NULL
+  `creneau` varchar(4) NOT NULL,
+  KEY `id_reservation` (`id_reservation`),
+  CONSTRAINT `FK_table_reserve_reservation` FOREIGN KEY (`id_reservation`) REFERENCES `reservation` (`id_reservation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.table_reserve : ~1 rows (environ)
+-- Listage des données de la table restaurant.table_reserve : ~0 rows (environ)
 
 -- Listage de la structure de table restaurant. users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -164,12 +175,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `admin` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `username` (`email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table restaurant.users : ~2 rows (environ)
+-- Listage des données de la table restaurant.users : ~3 rows (environ)
 INSERT INTO `users` (`id`, `email`, `password`, `nom`, `prenom`, `admin`) VALUES
 	(12, 'admin@snoux.fr', '$2y$10$4.EEEHx9QbHJwAVpexME1OF.tvZzFg1DLtvt.R5ppiEhZV5oWjQiW', 'Snoux', 'Snoux', 1),
-	(17, 'test@gmail.com', '$2y$10$E41ntixa3JjrLtlcurMTou9TICxZ2YKieA3iQoevj7VwepI1JcYD6', 'test', 'test', 0);
+	(17, 'test@gmail.com', '$2y$10$E41ntixa3JjrLtlcurMTou9TICxZ2YKieA3iQoevj7VwepI1JcYD6', 'test', 'test', 0),
+	(20, 'test2@gmail.com', '$2y$10$E41ntixa3JjrLtlcurMTou9TICxZ2YKieA3iQoevj7VwepI1JcYD6', 'test2', 'test2', 0);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
