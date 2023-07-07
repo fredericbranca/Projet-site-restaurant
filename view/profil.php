@@ -193,7 +193,7 @@ if (
                     </form>
                 </div>
 
-                <script type="text/javascript" src="public/js/messagerie.js"></script>
+                <script type="text/javascript" src="./public/js/messagerie.js"></script>
             <?php
             }
 
@@ -272,7 +272,7 @@ if (
                     </form>
                 </div>
 
-                <script type="text/javascript" src="public/js/messagerie.js"></script>
+                <script type="text/javascript" src="./public/js/messagerie.js"></script>
             <?php
             }
 
