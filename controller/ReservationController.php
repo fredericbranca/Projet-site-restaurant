@@ -12,6 +12,9 @@ class ReservationController
     {
         $pdo = Connect::seConnecter();
 
+        // Mettre en français
+        $requeteLangue = $pdo->query("SET lc_time_names = 'fr_FR';");
+
         // On récupère le nombre de table entrée par le restaurateur
         $requeteNbTable = $pdo->query("
             SELECT *
@@ -92,6 +95,9 @@ class ReservationController
     {
         $pdo = Connect::seConnecter();
 
+        // Mettre en français
+        $requeteLangue = $pdo->query("SET lc_time_names = 'fr_FR';");
+
         if (isset($_POST['reservation'])) {
 
             // Filtre
@@ -138,7 +144,6 @@ class ReservationController
                 $_SESSION['message'] = "<div class='alert-2'>Reservation validée pour $personne personnes le $date ($creneau)</div>";
                 header("Location: index.php?action=reservationValidee");
                 exit;
-
             } else {
                 $_SESSION['message'] = "<div class='alert-1'>Champs incorrect</div>";
                 header("Location: index.php?action=infosReservation");

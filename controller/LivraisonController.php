@@ -19,6 +19,9 @@ class LivraisonController
 
         $pdo = Connect::seConnecter();
 
+        // Mettre en français
+        $requeteLangue = $pdo->query("SET lc_time_names = 'fr_FR';");
+
         // id de l'utilisateur connecté
         $idUser = $_SESSION['users']['id'];
 
@@ -200,6 +203,9 @@ class LivraisonController
     {
         $pdo = Connect::seConnecter();
 
+        // Mettre en français
+        $requeteLangue = $pdo->query("SET lc_time_names = 'fr_FR';");
+
         if (!isset($_SESSION['users'])) {
             $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Veuillez vous connecter pour accéder à la livraison</div>";
             header("Location: index.php?action=login");
@@ -333,7 +339,6 @@ class LivraisonController
 
                     header("Location: index.php?action=panier");
                     exit;
-
                 } else {
                     $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Action impossible</div>";
                     header("Location: index.php?action=panier");
@@ -363,15 +368,15 @@ class LivraisonController
 
 
             // Payer le panier
-            if(isset($_POST['submit'])) {
-    
+            if (isset($_POST['submit'])) {
+
                 //Filtre
                 $idAdresse = filter_input(INPUT_POST, 'adresse', FILTER_VALIDATE_INT);
 
                 //Prix
                 $prix = 0;
                 $commandes = $requeteProduits->fetchAll();
-                foreach($commandes as $commande) {
+                foreach ($commandes as $commande) {
                     $prix += $commande['prix'] * $commande['quantite'];
                 }
                 //ajout de la livraison
@@ -379,7 +384,7 @@ class LivraisonController
                 // date du paiement
                 $date = date("Y-m-d");
 
-                if($idAdresse !== false && !empty($idAdresse)) {
+                if ($idAdresse !== false && !empty($idAdresse)) {
                     $requettePayerCommande = $pdo->prepare("
                         UPDATE commande
                         SET statut = 1, id_adresse = :id_adresse, prix_total = :prix, date = :date
@@ -396,13 +401,11 @@ class LivraisonController
                     $_SESSION['message'] = "<div class='alert-2'>Le paiement a été validé</div>";
                     header("Location: index.php?action=panierPayer");
                     exit;
-
                 } else {
                     $_SESSION['alerte'] = "<div id='alert' class='alert-red'>Une erreur s'est produite</div>";
                     header("Location: index.php?action=panier");
                     exit;
                 }
-    
             }
         }
 

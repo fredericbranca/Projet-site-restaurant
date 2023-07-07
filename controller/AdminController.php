@@ -19,6 +19,9 @@ class AdminController
 
         $pdo = Connect::seConnecter();
 
+        // Mettre en français
+        $requeteLangue = $pdo->query("SET lc_time_names = 'fr_FR';");
+
         // Afficher le nombre de table
         $requeteTable = $pdo->query("
             SELECT *
@@ -53,7 +56,6 @@ class AdminController
                 $_SESSION['message'] = "<div class='alert-table'>Le nombre de table a été modifié</div>";
                 header("Location: index.php?action=admin&page=table");
                 exit;
-
             } else {
                 $_SESSION['message'] = "<div class='alert-table'>Champs incorrect</div>";
                 header("Location: index.php?action=admin&page=table");
