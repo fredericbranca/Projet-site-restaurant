@@ -38,6 +38,7 @@ body {
     flex-direction: column;
     gap: 30px;
     margin-left: 100px;
+    min-width: 800px;
 }
 .sous-titre {
     font-size: 30px;
@@ -157,4 +158,78 @@ body {
 }
 .noCommande div {
     color: rgb(58, 135, 53)
+}
+
+/* Messagerie */
+.message-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.message-container.sent {
+    align-self: flex-end;
+    background-color: rgb(226, 175, 30);
+    gap: 10px
+}
+.message-container.received {
+    align-self: flex-start;
+    background-color: #F1F0F0;
+    gap: 10px
+}
+.message-container .sender {
+    font-weight: bold;
+}
+.timestamp {
+    font-size: 14px;
+    color: #888;
+}
+.message-form {
+    margin-top: 10px;
+}
+.message-form textarea {
+    width: 100%;
+    height: 100px;
+    color: black;
+    padding: 10px;
+}
+.message-list {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    overflow-y: auto;
+    gap: 10px
+}
+.message-container .message {
+    color: black;
+    max-width: 500px;
+}
+.send-btn {
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+}
+.message-form .form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.message-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: solid 1px rgb(226, 175, 30);
+    padding: 10px;
+    max-width: 400px;
+    border-radius: 20px;
+}
+.message-details .message {
+    font-size: 20px;
+}
+.alert-message {
+    position: absolute;
+    color:rgb(226, 175, 30);
+    top: -27px;
 }
