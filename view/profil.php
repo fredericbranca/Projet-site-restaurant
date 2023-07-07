@@ -7,7 +7,8 @@ if (
         $_GET['page'] === 'adresses' ||
         ($_GET['page'] === 'adresses' && isset($_GET['modifier'])) ||
         $_GET['page'] === 'ajouterAdresse' ||
-        $_GET['page'] === 'messagerie'
+        $_GET['page'] === 'messagerie' ||
+        ($_GET['page'] === 'messagerie' && isset($_GET['id']))
     )
 ) {
 
@@ -154,11 +155,124 @@ if (
             <?php
             }
 
-            // Vue messagerie
+            // Vue messagerie client
 
-            elseif (isset($_GET['page']) && $_GET['page'] === 'messagerie') {
+            elseif ($_SESSION['users']['admin'] == 0 && isset($_GET['page']) && $_GET['page'] === 'messagerie' && !isset($_GET['id'])) {
+                $messagerie = $requeteMessage->fetchAll();
             ?>
-                <div>messagerie</div>
+                <div class="sous-titre">Messagerie</div>
+
+                <div class="message-list" id="messageList">
+
+                    <?php
+                    foreach ($messagerie as $msg) {
+                        if ($msg['sender_id'] === $_SESSION['users']['id']) {
+                    ?>
+                            <div class="message-container sent">
+                                <div class="timestamp"><?= $msg['created'] ?></div>
+                                <div class="message"><?= $msg['message'] ?></div>
+                            </div>
+                        <?php
+                        } else {
+                        ?>
+                            <div class="message-container received">
+                                <div class="timestamp"><?= $msg['created'] ?></div>
+                                <div class="message"><?= $msg['message'] ?></div>
+                            </div>
+                    <?php
+                        }
+                    }
+                    ?>
+
+                </div>
+                <div class="message-form">
+                    <form class="form" method="POST" action="index.php?action=profil" enctype="multipart/form-data">
+                        <textarea name="message" placeholder="Entrez votre message"></textarea>
+                        <input class="bouton send-btn" type="submit" name="envoyerMessage" value="ENVOYER">
+                        <?= $message ?>
+                    </form>
+                </div>
+
+                <script type="text/javascript" src="public/js/messagerie.js"></script>
+            <?php
+            }
+
+            // Vue aperçu message reçu admin
+
+            elseif ($_SESSION['users']['admin'] == 1 && isset($_GET['page']) && $_GET['page'] === 'messagerie' && !isset($_GET['id'])) {
+                $messages = $requeteMessage->fetchAll();
+            ?>
+                <div class="sous-titre">Messagerie</div>
+
+                <div class="message-list">
+
+                    <?php
+
+                    if (!empty($messages)) {
+
+                        foreach ($messages as $msg) {
+                    ?>
+                            <a class="message-details" href="index.php?action=profil&page=messagerie&id=<?= $msg['conversation_id'] ?>">
+                                <div class="timestamp"><?= $msg['created'] ?></div>
+                                <div>De : <?= $msg['user'] ?></div>
+                                <div class="message">Dernier message : <?= $msg['message'] ?></div>
+                            </a>
+                        <?php
+                        }
+                    } else {
+                        ?>
+                        <div class="noCommande">
+                            <i class="fa-solid fa-check"></i>
+                            <div>Aucun message reçu</div>
+                        </div>
+                    <?php
+                    }
+                    ?>
+
+                </div>
+            <?php
+            }
+
+            // Vue message par conversation
+
+            elseif ($_SESSION['users']['admin'] == 1 && isset($_GET['page']) && $_GET['page'] === 'messagerie' && isset($_GET['id'])) {
+                $messagerie = $requeteMessage->fetchAll();
+            ?>
+                <div class="sous-titre">Messagerie</div>
+
+                <div class="message-list" id="messageList">
+
+                    <?php
+                    foreach ($messagerie as $msg) {
+                        if ($msg['sender_id'] === $_SESSION['users']['id']) {
+                    ?>
+                            <div class="message-container sent">
+                                <div class="timestamp"><?= $msg['created'] ?></div>
+                                <div class="message"><?= $msg['message'] ?></div>
+                            </div>
+                        <?php
+                        } else {
+                        ?>
+                            <div class="message-container received">
+                                <div class="timestamp"><?= $msg['created'] ?></div>
+                                <div class="message"><?= $msg['message'] ?></div>
+                            </div>
+                    <?php
+                        }
+                    }
+                    ?>
+
+                </div>
+
+                <div class="message-form">
+                    <form class="form" method="POST" action="index.php?action=profil&id=<?= $_GET['id'] ?>" enctype="multipart/form-data">
+                        <textarea name="message" placeholder="Entrez votre message"></textarea>
+                        <input class="bouton send-btn" type="submit" name="envoyerMessage" value="ENVOYER">
+                        <?= $message ?>
+                    </form>
+                </div>
+
+                <script type="text/javascript" src="public/js/messagerie.js"></script>
             <?php
             }
 
