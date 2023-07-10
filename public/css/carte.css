@@ -9,8 +9,16 @@ main[data-theme='light'] {
     --main-font-color: black;
 }
 
-body {
-    background: rgba(0, 0, 0, 0.4) url(../img/carte.jpg) no-repeat;
+header {
+    position: relative;
+    min-width: 90vw;
+}
+nav {
+    position: absolute;
+    width:  90vw;
+}
+.header {
+    background: rgba(0, 0, 0, 0.4) url(../img/carte.jpg) no-repeat 50% 65% ;
     background-blend-mode: darken;
     background-size: 100% auto;
 }
@@ -33,6 +41,7 @@ body {
     align-items: center;
     gap: 36px;
     padding: 100px 0px;
+    min-height: 82vh;
 }
 .carte-content {
     display: flex;

@@ -99,89 +99,6 @@ footer {
     flex-shrink: 0;
 }
 
-/* Responsivité de la nav bar et du footer (test)*/ 
-@media (max-width: 1200px) {
-    nav .nav-btn {
-        display: inline-block;
-        position: absolute;
-        right: 5%;
-        top: 35px;
-    }
-    nav .nav-btn label {
-        display: inline-block;
-        width: 50px;
-        height: 50px;
-        padding: 13px;
-    }
-    nav .nav-btn label span {
-        display: block;
-        width: 25px;
-        height: 10px;
-        border-top: 2px solid #eee;
-    }
-    nav .icon-container {
-        margin-right: 3.3em;
-        gap: 38px
-    }
-    nav .link-container {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        width: fit-content;
-        overflow: hidden;
-        top: 120px;
-        left: 10px;
-        gap: 20px;
-    }
-    nav .link-container a {
-        width: 100%;
-        overflow: hidden;
-    }
-    nav #nav-check:not(:checked) ~ .link-container {
-        height: 0px;
-    }
-    nav #nav-check:checked ~ .link-container {
-        height: fit-content;
-        overflow-y: auto;
-    }
-
-    footer {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 756px) {
-    footer {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 576px) {
-    nav .icon-container {
-        position: absolute;
-        display: flex;
-        flex-wrap: wrap;
-        width: fit-content;
-        overflow-y: hidden;
-        top: 260px;
-        left: 10px;
-        gap: 20px
-    }
-    nav #nav-check:not(:checked) ~ .icon-container {
-        height: 0px;
-    }
-    nav #nav-check:checked ~ .icon-container {
-        height: fit-content;
-        overflow-y: auto;
-    }
-    nav .logo-container a {
-        width: 40%;
-    }
-    footer {
-        font-size: 10px;
-    }
-}
-
 .bouton {
     padding: 1rem 2rem;
     background-color: rgb(226, 175, 30);
@@ -347,4 +264,90 @@ footer {
   width: 0;
   height: 0;
   background-color: var(--light);
+}
+
+/* Responsivité de la nav bar et du footer (test)*/ 
+@media (max-width: 1200px) {
+    nav .nav-btn {
+        display: inline-block;
+        position: absolute;
+        right: 5%;
+        top: 35px;
+    }
+    nav .nav-btn label {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 13px;
+    }
+    nav .nav-btn label span {
+        display: block;
+        width: 25px;
+        height: 10px;
+        border-top: 2px solid #eee;
+    }
+    nav .icon-container {
+        margin-right: 3.3em;
+        gap: 38px
+    }
+    nav .link-container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        overflow: hidden;
+        top: 120px;
+        left: 10px;
+        gap: 20px;
+    }
+    nav .link-container a {
+        width: 100%;
+        overflow: hidden;
+    }
+    nav #nav-check:not(:checked) ~ .link-container {
+        height: 0px;
+    }
+    nav #nav-check:checked ~ .link-container {
+        height: fit-content;
+        overflow-y: auto;
+    }
+
+    footer {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 756px) {
+    footer {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    nav .icon-container {
+        position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        width: fit-content;
+        overflow-y: hidden;
+        top: 260px;
+        left: 10px;
+        gap: 20px
+    }
+    nav #nav-check:not(:checked) ~ .icon-container {
+        height: 0px;
+    }
+    nav #nav-check:checked ~ .icon-container {
+        height: fit-content;
+        overflow-y: auto;
+    }
+    nav .logo-container a {
+        width: 40%;
+    }
+    footer {
+        font-size: 10px;
+    }
+    .bouton {
+        padding: 0.5rem 1rem;
+    }
 }

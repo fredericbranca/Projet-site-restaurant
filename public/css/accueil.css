@@ -15,10 +15,18 @@ main[data-theme='light'] {
     --info-pratique-titre: rgb(62, 62, 62);
 }
 
-body {
-    background: rgba(0, 0, 0, 0.4) url(../img/resto.jpg) no-repeat center top -65%;
+header {
+    position: relative;
+    min-width: 90vw;
+}
+nav {
+    position: absolute;
+    width:  90vw;
+}
+.header {
+    background: rgba(0, 0, 0, 0.4) url(../img/resto.jpg) no-repeat 50% 65% ;
     background-blend-mode: darken;
-    background-size: content;
+    background-size: 100% auto;
 }
 
 .header {
@@ -164,4 +172,37 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+/* @media responsive */
+
+@media (max-width: 400px) {
+
+    .header {
+        background: rgba(0, 0, 0, 0.4) url(../img/resto.jpg) no-repeat;
+        background-blend-mode: darken;
+        background-size: 100% auto;
+        padding-bottom: 0px;
+        min-height: 56vh;
+    }
+
+    .section-carte img {
+        width: 280px;
+        height: auto;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .header p:first-of-type {
+        font-size: 10px;
+    }
+    .header p:nth-child(3) {
+        font-size: 20px;
+    }
+    .bouton span {
+        font-size: 17px;
+    }
 }
