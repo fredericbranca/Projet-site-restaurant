@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
   PRIMARY KEY (`id_commande`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.commande : ~0 rows (environ)
+-- Listage des données de la table restaurant.commande : ~2 rows (environ)
 INSERT INTO `commande` (`id_commande`, `id_users`, `statut`, `id_adresse`, `prix_total`, `date`) VALUES
 	(32, 17, 1, 14, 111, '2023-07-10'),
 	(34, 12, 0, NULL, NULL, NULL);
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `nb_table` (
   `nb_table` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.nb_table : ~1 rows (environ)
+-- Listage des données de la table restaurant.nb_table : ~0 rows (environ)
 INSERT INTO `nb_table` (`nb_table`) VALUES
 	(21);
 
@@ -160,12 +160,14 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `telephone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_reservation`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.reservation : ~2 rows (environ)
+-- Listage des données de la table restaurant.reservation : ~0 rows (environ)
 INSERT INTO `reservation` (`id_reservation`, `date`, `nombre`, `creneau`, `civilite`, `nom`, `prenom`, `telephone`, `email`) VALUES
 	(35, '2023-07-10', 38, 'midi', 'monsieur', 'test', 'test', '1234567897', 'gzer@gmail.com'),
-	(36, '2023-07-10', 2, 'midi', 'monsieur', 'test', 'test', '0303030303', 'test@gmail.com');
+	(36, '2023-07-10', 2, 'midi', 'monsieur', 'test', 'test', '0303030303', 'test@gmail.com'),
+	(37, '2023-07-11', 1, 'midi', 'monsieur', 'test', 'tet', '0606060606', 'fezf@gmail.com'),
+	(38, '2023-07-11', 2, 'soir', 'monsieur', 'test', 'test', '0505050505', 're@gmail.com');
 
 -- Listage de la structure de table restaurant. users
 CREATE TABLE IF NOT EXISTS `users` (
