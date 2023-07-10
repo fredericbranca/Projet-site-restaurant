@@ -66,7 +66,6 @@ if (isset($_SESSION['accesInfosReservation']) && $_SESSION['accesInfosReservatio
 
             <div class="column">
                 <input class="bouton bouton-modif input-btn" type="submit" name="reservation" value="RÉSERVER">
-                <img src="public/img/sous-bouton.png">
             </div>
 
         </form>

@@ -135,7 +135,6 @@ if (!$panier) {
                         <div><?= $total + 3 ?> €</div>
                     </div>
                     <input class="bouton input-btn" type="submit" name="submit" value="PAYER">
-                    <img src="public/img/sous-bouton.png">
                 </div>
             </div>
         </form>
