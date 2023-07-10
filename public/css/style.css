@@ -1,10 +1,25 @@
+/* Couleur par défaut */
+:root, html[data-theme='dark'] {
+    --main-bg-color: black;
+    --main-bg-color-2: rgba(30, 30, 30);;
+    --main-font-color: white;
+    --info-pratique: rgb(160, 160, 160);
+}
+
+html[data-theme='light'] {
+    --main-bg-color: rgb(176, 176, 176);
+    --main-bg-color-2: rgba(30, 30, 30, 0.31);;
+    --main-font-color: black;
+    --info-pratique: rgb(94, 94, 94);
+}
+
 /* Réinitialise les marges, paddings + police de la page */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: white;
+    color: var(--main-font-color);
 }
 
 body {
@@ -27,6 +42,7 @@ nav {
 nav, footer, a { 
     font-size: 24px;
     text-decoration: none;
+    color: white;
 }
 nav .logo-container {
     display: flex;
@@ -200,10 +216,13 @@ footer {
 }
 .link a, .link:nth-child(2) {
     font-size: 30px;
+    color: var(--main-font-color);
 }
 .link:nth-child(1) {
     font-size: 35px;
+    color: var(--main-font-color);
 }
+
 .header-link {
     gap: 10px;
 }
@@ -214,6 +233,10 @@ footer {
     width: 360px;
     border-radius: 5px;
     font-size: 25px;
+    color: white;
+}
+.input-theme option {
+    color: white;
 }
 .input-btn {
     color: black;
@@ -253,4 +276,75 @@ footer {
     padding: 5px;
     opacity: 0;
     transition: 1s;
+}
+
+/* switch dark light */
+
+.switch {
+  --dark: #404045;
+  --light: #EEEEEE;
+  position: relative;
+  display: inline-block;
+  border-radius: 1rem;
+  cursor: pointer;
+  width: 60px;
+  height: 30px;
+  overflow: hidden;
+}
+
+.checkbox {
+  opacity: 0
+}
+
+.slider {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark);
+  transition: .4s;
+}
+
+.slider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 40%;
+  height: 80%;
+  border-radius: 100%;
+  transform: translateY(-50%);
+  border: 4px solid var(--dark);
+  background-color: var(--light);
+  transition: .4s;
+}
+
+.slider::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  border-radius: 100%;
+  transform: translate(40%, -20%);
+  background-color: var(--dark);
+  transition: .4s;
+}
+
+.checkbox:checked + .slider {
+  background-color: var(--light);
+}
+
+.checkbox:checked + .slider::before {
+  border: 4px solid var(--light);
+  background-color: var(--dark);
+  transform: translate(90%, -50%);
+}
+
+.checkbox:checked + .slider::after {
+  width: 0;
+  height: 0;
+  background-color: var(--light);
 }

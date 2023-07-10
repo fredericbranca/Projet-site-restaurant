@@ -1,5 +1,18 @@
-body {
-    background-color: black;
+/* Couleur par défaut */
+:root, main[data-theme='dark'] {
+    --main-bg-color: black;
+    --main-font-color: white;
+    --main-input-color: rgb(57, 57, 57);
+}
+
+main[data-theme='light'] {
+    --main-bg-color: rgb(222, 218, 213);
+    --main-font-color: black;
+    --main-input-color: rgb(185, 185, 185);
+}
+
+main, nav, header {
+    background-color: var(--main-bg-color);
 }
 
 .header-link {
@@ -21,7 +34,7 @@ body {
 }
 .ligne {
     width: 1px;
-    background: white;
+    background: var(--main-font-color);
     min-height: 100px;
 }
 .menu {
@@ -29,6 +42,9 @@ body {
     flex-direction: column;
     gap: 15px;
     transition: 0.3s;
+}
+.menu a {
+    color: var(--main-font-color);
 }
 .menu a:hover {
     color : rgb(226, 175, 30);
@@ -62,7 +78,7 @@ body {
     width: fit-content;
 }
 .input-adresse {
-    background-color: rgb(57, 57, 57);
+    background-color: var(--main-input-color);
     padding: 20px;
     width: 640px;
     border-radius: 10px;
@@ -120,7 +136,7 @@ body {
 }
 .ligne2 {
     height: 1px;
-    background: white;
+    background: var(--main-font-color);
 }
 
 .details {

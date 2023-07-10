@@ -1,4 +1,22 @@
-body {
+/* Couleur par défaut */
+:root, main[data-theme='dark'] {
+    --main-bg-color: black;
+    --main-font-color: rgb(255, 255, 255);
+    --main-input-color: rgb(57, 57, 57);
+    --main-input-placeholder-color: rgb(142, 141, 141);
+}
+
+main[data-theme='light'] {
+    --main-bg-color: rgb(222, 218, 213);
+    --main-font-color: black;
+    --main-input-color: rgb(208, 208, 208);
+    --main-input-placeholder-color: rgb(192, 190, 190);
+}
+
+main {
+    background-color: var(--main-bg-color);
+}
+header, nav {
     background-color: black;
 }
 
@@ -38,13 +56,18 @@ form {
 
 .input-infos-date {
     background-color: rgb(57, 57, 57);
+    color: white;
     padding: 20px;
     width: fit-content;
     border-radius: 5px;
     font-size: 25px;
 }
+.input-infos-date option {
+    color: white;
+}
 .fa-regular {
     padding-left: 100px;
+    color: var(--main-bg-color)
 }
 .input-1 {
     gap: 24px;
@@ -79,6 +102,9 @@ form {
     border-radius: 5px;
     font-size: 15px;
     border-radius: 10px;
+}
+.input-infos::placeholder {
+    color: var(--main-input-placeholder-color);
 }
 .bouton {
     font-weight: normal;

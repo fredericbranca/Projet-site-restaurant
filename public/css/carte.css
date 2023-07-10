@@ -1,3 +1,14 @@
+/* Couleur par défaut */
+:root, main[data-theme='dark'] {
+    --main-bg-color: black;
+    --main-font-color: white;
+}
+
+main[data-theme='light'] {
+    --main-bg-color: rgb(222, 218, 213);
+    --main-font-color: black;
+}
+
 body {
     background: rgba(0, 0, 0, 0.4) url(../img/carte.jpg) no-repeat;
     background-blend-mode: darken;
@@ -13,9 +24,10 @@ body {
 .header p {
     font-size: 40px;
     font-weight: bold;
+    color: white;
 }
 .section-carte {
-    background-color: black;
+    background-color: var(--main-bg-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,7 +43,7 @@ body {
 .content {
     display: flex;
     flex-direction: column;
-    border: 1px solid white;
+    border: 1px solid var(--main-font-color);
     gap: 20px;
     padding: 15px;
 }

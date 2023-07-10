@@ -1,3 +1,20 @@
+/* Couleur par défaut */
+:root, main[data-theme='dark'] {
+    --main-bg-color: black;
+    --main-bg-color-2: rgba(30, 30, 30);;
+    --main-font-color: white;
+    --info-pratique: rgb(160, 160, 160);
+    --info-pratique-titre: rgb(160, 160, 160);
+}
+
+main[data-theme='light'] {
+    --main-bg-color: rgb(222, 218, 213);
+    --main-bg-color-2: rgba(30, 30, 30, 0.31);;
+    --main-font-color: black;
+    --info-pratique: rgb(207, 204, 204);
+    --info-pratique-titre: rgb(62, 62, 62);
+}
+
 body {
     background: rgba(0, 0, 0, 0.4) url(../img/resto.jpg) no-repeat center top -65%;
     background-blend-mode: darken;
@@ -15,14 +32,16 @@ body {
 }
 .header p:first-of-type {
     font-size: 20px;
+    color: white;
 }
 .header p:nth-child(3) {
     font-size: 40px;
+    color: white;
 }
 
 .section-carte {
     min-height: 750px;
-    background-color: black;
+    background-color: var(--main-bg-color);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -72,14 +91,16 @@ body {
     font-size: 25px;
     font-weight: bold;
     z-index: 1;
+    color: white;
 }
 .section-commande p:nth-child(3) {
     font-size: 24px;
     z-index: 1;
+    color: white;
 }
 
 .section-infos {
-    background-color: black;
+    background-color: var(--main-bg-color);
     min-height: 930px;
     display: flex;
     flex-wrap: wrap;
@@ -87,7 +108,7 @@ body {
     align-items: center;
 }
 .infos-pratiques {
-    background-color: rgb(30, 30, 30);
+    background-color: rgba(30, 30, 30, 0.31);
     width: 560px;
     height: 624px;
     display: flex;
@@ -115,7 +136,7 @@ body {
 }
 .infos p:first-of-type {
     font-size: 25px;
-    color: rgb(160, 160, 160);
+    color: rgb(62, 62, 62);
 }
 .infos p:nth-child(2) {
     font-size: 20px;
