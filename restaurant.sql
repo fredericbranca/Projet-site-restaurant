@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `adresse` (
   PRIMARY KEY (`id_adresse`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.adresse : ~1 rows (environ)
+-- Listage des données de la table restaurant.adresse : ~0 rows (environ)
 INSERT INTO `adresse` (`id_adresse`, `id_user`, `nom`, `prenom`, `adresse`, `cp`, `ville`, `telephone`, `defaut`) VALUES
 	(14, 17, 'test', 'test', 'test', 67000, 'stras', '608646563', 1);
 
@@ -44,13 +44,12 @@ CREATE TABLE IF NOT EXISTS `carte` (
   `prix` float NOT NULL,
   `section` varchar(50) NOT NULL,
   PRIMARY KEY (`id_produit`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.carte : ~22 rows (environ)
+-- Listage des données de la table restaurant.carte : ~8 rows (environ)
 INSERT INTO `carte` (`id_produit`, `description`, `prix`, `section`) VALUES
 	(1, 'FORMULE Entr&eacute;e + Plat ou Plat + Dessert', 19, 'dejeuner'),
 	(2, 'FORMULE Entr&eacute;e + Plat ou Plat + Dessert', 29, 'soir'),
-	(3, 'La Burratina Cr&eacute;meuse des Pouilles, Grenade et Sel Noir Fum&eacute;', 11, 'entree'),
 	(4, 'Le Magret de Canard L&eacute;gendaire du Sud-Ouest, Napp&eacute; d&#039;une Sauce &agrave; l&#039;Orange Accompagn&eacute; de son Gratin de Duo de Pommes de Terre', 25, 'plat'),
 	(5, 'Le D&eacute;lice Dor&eacute; : Brioche fa&ccedil;on Pain Perdu Accompagn&eacute; de son Caramel Beurre Sal&eacute; et de sa Cr&egrave;me Anglaise', 10, 'dessert'),
 	(6, 'Littre Vittel ou Badoit', 4, 'boisson'),
@@ -69,7 +68,8 @@ INSERT INTO `carte` (`id_produit`, `description`, `prix`, `section`) VALUES
 	(20, 'Le Caf&eacute; des Rupins, un Gourmand Absolu Accompagn&eacute; d&#039;une S&eacute;lection de Mignardises', 11, 'dessert'),
 	(21, 'Cocktails', 8, 'boisson'),
 	(22, 'Soft (Coca-Cola, Sprite, Red Bull, Ice Tea, Jus d&rsquo;orange, Limonade)', 3, 'boisson'),
-	(23, 'Caf&eacute;', 2, 'boisson');
+	(23, 'Caf&eacute;', 2, 'boisson'),
+	(25, 'La Burratina Cr&eacute;meuse des Pouilles, Grenade et Sel Noir Fum&eacute;', 11, 'entree');
 
 -- Listage de la structure de table restaurant. commande
 CREATE TABLE IF NOT EXISTS `commande` (
@@ -80,9 +80,12 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `prix_total` float DEFAULT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id_commande`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.commande : ~2 rows (environ)
+-- Listage des données de la table restaurant.commande : ~0 rows (environ)
+INSERT INTO `commande` (`id_commande`, `id_users`, `statut`, `id_adresse`, `prix_total`, `date`) VALUES
+	(32, 17, 1, 14, 111, '2023-07-10'),
+	(34, 12, 0, NULL, NULL, NULL);
 
 -- Listage de la structure de table restaurant. horaires
 CREATE TABLE IF NOT EXISTS `horaires` (
@@ -111,9 +114,12 @@ CREATE TABLE IF NOT EXISTS `messagerie` (
   KEY `receiver_id` (`receiver_id`),
   CONSTRAINT `FK_messagerie_users` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`),
   CONSTRAINT `FK_messagerie_users_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table restaurant.messagerie : ~0 rows (environ)
+INSERT INTO `messagerie` (`id_message`, `sender_id`, `receiver_id`, `message`, `created_at`, `conversation_id`) VALUES
+	(27, 17, 12, 'salut', '2023-07-10 07:20:29', 17),
+	(28, 12, 17, 'bonjour', '2023-07-10 07:24:47', 17);
 
 -- Listage de la structure de table restaurant. nb_table
 CREATE TABLE IF NOT EXISTS `nb_table` (
@@ -122,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `nb_table` (
 
 -- Listage des données de la table restaurant.nb_table : ~1 rows (environ)
 INSERT INTO `nb_table` (`nb_table`) VALUES
-	(20);
+	(21);
 
 -- Listage de la structure de table restaurant. produit_commande
 CREATE TABLE IF NOT EXISTS `produit_commande` (
@@ -135,35 +141,31 @@ CREATE TABLE IF NOT EXISTS `produit_commande` (
   CONSTRAINT `FK_produit_commande_commande` FOREIGN KEY (`id_commande`) REFERENCES `commande` (`id_commande`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.produit_commande : ~0 rows (environ)
+-- Listage des données de la table restaurant.produit_commande : ~4 rows (environ)
+INSERT INTO `produit_commande` (`id_commande`, `id_produit`, `quantite`) VALUES
+	(32, 4, 3),
+	(32, 14, 1),
+	(32, 6, 2),
+	(34, 6, 3);
 
 -- Listage de la structure de table restaurant. reservation
 CREATE TABLE IF NOT EXISTS `reservation` (
   `id_reservation` int NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
-  `nombre` int NOT NULL,
+  `nombre` float NOT NULL,
   `creneau` varchar(50) NOT NULL,
   `civilite` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `prenom` varchar(50) NOT NULL,
+  `prenom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `telephone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_reservation`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table restaurant.reservation : ~0 rows (environ)
-
--- Listage de la structure de table restaurant. table_reserve
-CREATE TABLE IF NOT EXISTS `table_reserve` (
-  `id_reservation` int NOT NULL,
-  `nb_table` float NOT NULL DEFAULT '0',
-  `date` date NOT NULL,
-  `creneau` varchar(4) NOT NULL,
-  KEY `id_reservation` (`id_reservation`),
-  CONSTRAINT `FK_table_reserve_reservation` FOREIGN KEY (`id_reservation`) REFERENCES `reservation` (`id_reservation`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Listage des données de la table restaurant.table_reserve : ~0 rows (environ)
+-- Listage des données de la table restaurant.reservation : ~2 rows (environ)
+INSERT INTO `reservation` (`id_reservation`, `date`, `nombre`, `creneau`, `civilite`, `nom`, `prenom`, `telephone`, `email`) VALUES
+	(35, '2023-07-10', 38, 'midi', 'monsieur', 'test', 'test', '1234567897', 'gzer@gmail.com'),
+	(36, '2023-07-10', 2, 'midi', 'monsieur', 'test', 'test', '0303030303', 'test@gmail.com');
 
 -- Listage de la structure de table restaurant. users
 CREATE TABLE IF NOT EXISTS `users` (
