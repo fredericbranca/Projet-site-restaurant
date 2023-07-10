@@ -19,10 +19,11 @@ class ReservationController
         $requeteNbTable = $pdo->query("
             SELECT *
             FROM nb_table
+            LIMIT 1
         ");
 
         $requeteNbTable = $requeteNbTable->fetch();
-        $nbTable = $requeteNbTable['nb_table'];
+        $nbPersonneMax = $requeteNbTable['nb_table'] * 2; // 2 personnes par table
 
         if (isset($_POST['reservation']) && ($_POST['reservation'] == "MIDI" || $_POST['reservation'] == "SOIR")) {
 
@@ -47,23 +48,25 @@ class ReservationController
             if ($nbCouvert !== false && $date !== false) {
 
                 // On vérifie si le nombre de couvert est disponible
-                $requeteTableDisponible = $pdo->prepare("
+                $requetePlaceDisponible = $pdo->prepare("
                     SELECT *
-                    FROM table_reserve
+                    FROM reservation
                     WHERE date = :date AND creneau = :creneau
                 ");
-                $requeteTableDisponible->execute([
+                $requetePlaceDisponible->execute([
                     'date' => $date,
                     'creneau' => $creneau
                 ]);
 
-                $requeteTableDisponible = $requeteTableDisponible->fetchAll();
+                $requetePlaceDisponible = $requetePlaceDisponible->fetchAll();
 
-                foreach ($requeteTableDisponible as $tableDisponible) {
-                    $nbTable -= $tableDisponible['nb_table'];
+                foreach ($requetePlaceDisponible as $placeDisponible) {
+                    $nbPersonneMax -= $placeDisponible['nombre'];
                 }
 
-                $nbTable -= ceil($nbCouvert / 2);
+                $nbPersonneMax -= $nbCouvert;
+                $nbTable = $nbPersonneMax / 2;
+
 
                 if ($nbTable >= 0) {
                     $_SESSION['couvert'] = $nbCouvert;
@@ -116,7 +119,7 @@ class ReservationController
 
                 // Entre les informations de la réservation dans la DB
                 $requeteReservation = $pdo->prepare("
-                    INSERT INTO reservation (date, nombre, creneau, civilite, nom, prenom, telephone, email)
+                    INSERT INTO reservation (date, nombre,creneau, civilite, nom, prenom, telephone, email)
                     VALUES (:date, :nombre, :creneau, :civilite, :nom, :prenom, :telephone, :email)
                 ");
                 $requeteReservation->execute([
@@ -128,16 +131,6 @@ class ReservationController
                     'prenom' => $prenom,
                     'telephone' => $numero,
                     'email' => $email
-                ]);
-
-                $requeteTableReservee = $pdo->prepare("
-                    INSERT INTO table_reserve (id_reservation, nb_table, date, creneau)
-                    VALUES (LAST_INSERT_ID(), :table, :date, :creneau)
-                ");
-                $requeteTableReservee->execute([
-                    'table' => $nbTable,
-                    'date' => $date,
-                    'creneau' => $creneau
                 ]);
 
                 $_SESSION['accesReservationValidee'] = 1;
