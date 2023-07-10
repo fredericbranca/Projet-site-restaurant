@@ -47,13 +47,13 @@ $titre_secondaire = (isset($titre_secondaire)) ? $titre_secondaire : "";
                 <a href="index.php?action=panier"><img class="icone" src="public/img/panier.png"></a>
             </div>
             <label class="switch">
-                <input type="checkbox" class="checkbox">
+                <input id="switchMode" type="checkbox" class="checkbox" onclick="toggleLightDarkMode()">
                 <span class="slider"></span>
             </label>
         </nav>
     </header>
 
-    <main data-theme="light">
+    <main id="main" data-theme="light">
         <?= $contenu ?>
     </main>
 
