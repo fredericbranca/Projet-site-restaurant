@@ -328,8 +328,8 @@ footer {
     nav .nav-btn {
         display: inline-block;
         position: absolute;
-        right: 0%;
-        top: 38px;
+        right: 0;
+        top: 25px;
     }
 
     nav .nav-btn label {
@@ -461,6 +461,14 @@ footer {
 
     footer {
         font-size: 10px;
+    }
+
+    .input-theme {
+        background-color: rgb(57, 57, 57);
+        padding: 20px;
+        width: 300px;
+        border-radius: 5px;
+        font-size: 20px;
     }
 
 }
