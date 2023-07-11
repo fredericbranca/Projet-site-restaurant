@@ -54,15 +54,16 @@ if (isset($_GET['page']) && $_GET['page'] === 'horaire') {
     $nbTable = $requeteTable->fetch();
 ?>
 
-    <div class="modifier-table">
-        <div class="header">
-            <p>ADMINISTRATION</p>
-        </div>
+    <div class="header">
+        <p>ADMINISTRATION</p>
+    </div>
 
-        <div class="pagination wrap">
-            <a class="bouton btn-register" href="index.php?action=admin"><span>MODIFIER LA CARTE</span></a>
-            <a class="bouton btn-register" href="index.php?action=admin&page=horaire"><span>MODIFIER LES HORAIRES</span></a>
-        </div>
+    <div class="pagination wrap">
+        <a class="bouton btn-register" href="index.php?action=admin"><span>MODIFIER LA CARTE</span></a>
+        <a class="bouton btn-register" href="index.php?action=admin&page=horaire"><span>MODIFIER LES HORAIRES</span></a>
+    </div>
+    
+    <div class="modifier-table">
 
         <form class="table-form" method="POST" action="index.php?action=admin" enctype="multipart/form-data">
             <div class="text">MODIFIER LE NOMBRE DE TABLE</div>

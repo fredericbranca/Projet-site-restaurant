@@ -1,5 +1,6 @@
 /* Couleur par défaut */
-:root, main[data-theme='dark'] {
+:root,
+main[data-theme='dark'] {
     --main-bg-color: black;
     --nav-bg-color: black;
     --main-font-color: white;
@@ -15,7 +16,7 @@ main[data-theme='light'] {
     --main-input-placeholder-color: rgb(65, 65, 65);
 }
 
-body {
+main, header {
     background-color: var(--main-bg-color);
 }
 
@@ -31,6 +32,7 @@ nav {
     border-radius: 5px;
     font-size: 15px;
 }
+
 .input-prix {
     background-color: var(--main-input-color);
     padding: 20px;
@@ -39,17 +41,20 @@ nav {
     border-radius: 5px;
     font-size: 15px;
 }
+
 .input-produit::placeholder {
-    color:var(--main-input-placeholder-color)
+    color: var(--main-input-placeholder-color)
 }
+
 .input-horaire {
     background-color: var(--main-input-color);
     padding: 20px;
-    width: 600px;
+    width: 500px;
     height: 44px;
     border-radius: 5px;
     font-size: 15px;
 }
+
 .input-table {
     background-color: var(--main-input-color);
     padding: 20px;
@@ -58,14 +63,17 @@ nav {
     border-radius: 5px;
     font-size: 15px;
 }
+
 .content p {
     font-size: 25px;
 }
+
 .btn-ajouter {
     color: black;
     cursor: pointer;
     width: 150px;
 }
+
 .btn-supprimer {
     color: black;
     cursor: pointer;
@@ -79,10 +87,12 @@ nav {
     align-items: center;
     background-color: var(--main-bg-color);
 }
+
 .header p {
     font-size: 40px;
     font-weight: bold;
 }
+
 .section-carte {
     background-color: var(--main-bg-color);
     display: flex;
@@ -91,12 +101,14 @@ nav {
     gap: 36px;
     padding: 100px 0px;
 }
+
 .carte-content {
     display: flex;
     flex-direction: column;
     align-items: left;
     gap: 36px;
 }
+
 .content {
     display: flex;
     flex-direction: column;
@@ -104,49 +116,60 @@ nav {
     gap: 20px;
     padding: 15px;
 }
+
 .produit {
     display: flex;
     flex-direction: wrap;
     align-items: center;
     gap: 50px;
 }
+
 .carte-section-1 {
     display: flex;
     flex-direction: column;
     text-align: center;
     gap: 20px;
 }
+
 .carte-section-2 {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
+
 .titre {
     font-size: 35px;
     font-weight: bold;
 }
+
 .sous-titre {
     font-size: 30px;
     font-weight: bold;
 }
+
 .titre-2 {
     font-size: 30px;
     font-weight: bold;
-    color:rgb(226, 175, 30);
+    color: rgb(226, 175, 30);
     padding-left: 50px;
 }
-span {
+
+.section-carte span {
     width: 1px;
     height: 100px;
     background-color: rgb(226, 175, 30);
-  }
+}
+
 .wrap {
     gap: 10px;
 }
+
 .pagination {
     padding-top: 50px;
     background-color: var(--main-bg-color);
+    padding-bottom: 15px;
 }
+
 .horaires {
     display: flex;
     flex-direction: column;
@@ -154,17 +177,20 @@ span {
     gap: 30px;
     padding: 50px 0px;
 }
+
 .details-horaires {
     display: flex;
     flex-wrap: wrap;
     gap: 10px
 }
+
 .horaire {
     display: flex;
-    flex-direction: wrap;
+    flex-wrap: wrap;
     align-items: center;
     gap: 50px;
 }
+
 .content-horaire {
     display: flex;
     flex-direction: column;
@@ -177,6 +203,7 @@ span {
     flex-direction: column;
     align-items: center;
 }
+
 .table-form {
     position: relative;
     display: flex;
@@ -185,12 +212,14 @@ span {
     padding-top: 100px;
     align-items: center;
 }
+
 .table {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     align-items: center;
 }
+
 .text {
     font-size: 30px;
 }
@@ -200,4 +229,71 @@ span {
     top: 226px;
     left: 61px;
     color: rgb(226, 175, 30);
+}
+
+/* @media responsive */
+
+@media (max-width: 1590px) {
+    .input-produit {
+        width: 550px;
+    }
+    .input-horaire {
+        width: 350px;
+    }
+}
+
+@media (max-width: 1200px) {
+    nav .nav-btn {
+        right: 30px;
+    }
+    .content {
+        margin: 10px 10px;
+        gap: 50px
+    }
+    .produit {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px
+    }
+    .input-produit {
+        width: 550px;
+    }
+    .horaire {
+        gap: 15px;
+    }
+    .input-horaire {
+        width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .input-produit {
+        width: 300px;
+    }
+    .btn-register {
+        padding: 0.5rem 1rem;
+        margin: 0px 10px;
+    }
+    .header p {
+        font-size: 
+        28px;
+    }
+    .bouton {
+        max-width: 250px;
+        margin-bottom: 10px;
+    }
+    .bouton span {
+        font-size: 18px;
+    }
+    .text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 20px;
+    }
+    .table {
+        justify-content: center;
+        align-items: center;
+    }
 }
