@@ -1,5 +1,6 @@
 /* Couleur par défaut */
-:root, main[data-theme='dark'] {
+:root,
+main[data-theme='dark'] {
     --main-bg-color: black;
     --main-font-color: rgb(255, 255, 255);
     --main-input-color: rgb(57, 57, 57);
@@ -16,7 +17,9 @@ main[data-theme='light'] {
 main {
     background-color: var(--main-bg-color);
 }
-header, nav {
+
+header,
+nav {
     background-color: black;
 }
 
@@ -24,16 +27,20 @@ header, nav {
     padding: 70px 0px;
     gap: 80px;
 }
+
 .titre {
     font-size: 35px;
     font-weight: bold;
 }
+
 .choix-1 {
     gap: 24px;
 }
+
 .choix-2 {
     gap: 100px
 }
+
 form {
     position: relative;
     gap: 54px;
@@ -43,11 +50,13 @@ form {
     position: absolute;
     color: rgb(226, 175, 30)
 }
+
 .alert-1 {
     position: absolute;
     bottom: 112px;
     color: rgb(226, 175, 30)
 }
+
 .alert-2 {
     color: rgb(226, 175, 30);
     font-size: 25px;
@@ -62,16 +71,20 @@ form {
     border-radius: 5px;
     font-size: 25px;
 }
+
 .input-infos-date option {
     color: white;
 }
+
 .fa-regular {
     padding-left: 100px;
     color: var(--main-bg-color)
 }
+
 .input-1 {
     gap: 24px;
 }
+
 .champs {
     display: flex;
     flex-direction: wrap;
@@ -85,9 +98,11 @@ form {
     width: 750px;
     gap: 10px;
 }
+
 .civilite-section:first-child {
     font-size: 18px;
 }
+
 .civilite {
     display: flex;
     flex-wrap: wrap;
@@ -95,6 +110,7 @@ form {
     justify-content: space-between;
     font-size: 15px;
 }
+
 .input-infos {
     background-color: rgb(57, 57, 57);
     padding: 10px;
@@ -103,19 +119,89 @@ form {
     font-size: 15px;
     border-radius: 10px;
 }
+
 .input-infos::placeholder {
     color: var(--main-input-placeholder-color);
 }
+
 .bouton {
     font-weight: normal;
 }
+
 .bouton-modif {
     font-weight: normal;
     padding-left: 95px;
     padding-right: 95px;
 }
+
 img {
     width: 344px;
     height: 36px;
 }
 
+/* @media responsive */
+
+@media (max-width: 1200px) {
+    nav .nav-btn {
+        right: 30px;
+    }
+
+    .input-infos-date {
+        padding: 20px;
+        font-size: 20px;
+    }
+
+    .champs {
+        max-width: 400px;
+    }
+
+    .civilite-section {
+        max-width: 400px;
+    }
+
+    .input-infos {
+        width: 200px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .titre {
+        font-size: 30px;
+    }
+
+    .champs {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+    }
+
+    .civilite-section {
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-infos-date {
+        width: 350px;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .link a,
+    .link:nth-child(2) {
+        font-size: 23px;
+    }
+
+    .input-1 {
+        gap: 7px;
+    }
+
+    .alert-2 {
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+}
