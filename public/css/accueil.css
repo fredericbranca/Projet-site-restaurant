@@ -3,7 +3,7 @@
     --main-bg-color: black;
     --main-bg-color-2: rgba(30, 30, 30);;
     --main-font-color: white;
-    --info-pratique: rgb(160, 160, 160);
+    --info-pratique: rgb(114, 114, 114);
     --info-pratique-titre: rgb(160, 160, 160);
 }
 
@@ -11,7 +11,7 @@ main[data-theme='light'] {
     --main-bg-color: rgb(222, 218, 213);
     --main-bg-color-2: rgba(30, 30, 30, 0.31);;
     --main-font-color: black;
-    --info-pratique: rgb(207, 204, 204);
+    --info-pratique: rgb(185, 185, 185);
     --info-pratique-titre: rgb(62, 62, 62);
 }
 
@@ -36,7 +36,6 @@ nav {
     gap: 20px;
     align-items: center;
     justify-content: center;
-    padding-bottom: 150px;
 }
 .header p:first-of-type {
     font-size: 20px;
@@ -116,7 +115,7 @@ nav {
     align-items: center;
 }
 .infos-pratiques {
-    background-color: rgba(30, 30, 30, 0.31);
+    background-color: var(--info-pratique);
     width: 560px;
     height: 624px;
     display: flex;
@@ -176,19 +175,17 @@ nav {
 
 /* @media responsive */
 
-@media (max-width: 400px) {
+@media (max-width: 768px) {
 
-    .header {
-        background: rgba(0, 0, 0, 0.4) url(../img/resto.jpg) no-repeat;
-        background-blend-mode: darken;
-        background-size: 100% auto;
-        padding-bottom: 0px;
-        min-height: 56vh;
+    header {
+        min-width: 100%;
     }
 
-    .section-carte img {
-        width: 280px;
-        height: auto;
+    .header {
+        background: rgba(0, 0, 0, 0.4) url(../img/resto.jpg) no-repeat center;
+        background-blend-mode: darken;
+        background-size: auto;
+
     }
 
     .logo {
@@ -203,6 +200,60 @@ nav {
         font-size: 20px;
     }
     .bouton span {
+        font-size: 17px;
+    }
+    .section-carte {
+        flex-direction: column;
+        gap: 10px;
+        min-height: 500px;
+        padding-bottom: 20px;
+    }
+    .section-carte .titre { 
+        gap: 20px;
+    }
+    .section-carte .titre p { 
+        font-size: 20px;
+    }
+    .section-carte img {
+        max-width: 280px;
+        height: auto;
+    }
+    .section-commande p:first-of-type {
+        font-size: 20px;
+    }
+    .section-commande p:nth-child(3) {
+        font-size: 17px;
+        text-align: center;
+    }
+    .horaires {
+        margin: 20px;
+        border: 1px solid rgb(226, 175, 30);
+    }
+    .details-horaires {
+        font-size: 15px;
+        gap: 10px
+    }
+    .section-infos {
+        min-height: 0px;
+    }
+    .infos-pratiques {
+        margin: 20px;
+        width: 500px;
+        height: fit-content;
+        padding: 20px 0px;
+        gap: 15px
+    }
+    .infos-pratiques .titre, .horaires .titre {
+        font-size: 25px;
+    }
+    .infos {
+        gap: 10px;
+    }
+    .infos p:first-of-type {
+        font-size: 20px;
+        color: rgb(62, 62, 62);
+    }
+    .infos p:nth-child(2) {
         font-size: 17px;
     }
 }
