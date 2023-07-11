@@ -1,14 +1,17 @@
 /* Couleur par défaut */
-:root, html[data-theme='dark'] {
+:root,
+html[data-theme='dark'] {
     --main-bg-color: black;
-    --main-bg-color-2: rgba(30, 30, 30);;
+    --main-bg-color-2: rgba(30, 30, 30);
+    ;
     --main-font-color: white;
     --info-pratique: rgb(160, 160, 160);
 }
 
 html[data-theme='light'] {
     --main-bg-color: rgb(176, 176, 176);
-    --main-bg-color-2: rgba(30, 30, 30, 0.31);;
+    --main-bg-color-2: rgba(30, 30, 30, 0.31);
+    ;
     --main-font-color: black;
     --info-pratique: rgb(94, 94, 94);
 }
@@ -27,8 +30,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+
 main {
-flex: 1;
+    flex: 1;
 }
 
 /* Navbar Footer */
@@ -39,23 +43,30 @@ nav {
     justify-content: space-between;
     align-items: center;
 }
-nav, footer, a { 
+
+nav,
+footer,
+a {
     font-size: 24px;
     text-decoration: none;
     color: white;
 }
+
 nav .logo-container {
     display: flex;
     align-items: center;
 }
+
 nav .link-container {
     display: flex;
     align-items: center;
     gap: 71px;
 }
+
 nav .link-container a {
     position: relative;
 }
+
 nav .link-container a:after {
     content: '';
     position: absolute;
@@ -68,6 +79,7 @@ nav .link-container a:after {
     transform-origin: bottom left;
     transition: transform 0.3s;
 }
+
 nav .link-container a:hover:after {
     transform: scaleX(1);
 }
@@ -75,17 +87,21 @@ nav .link-container a:hover:after {
 nav .icon-container {
     display: flex;
     align-items: center;
-    gap: 38px
+    gap: 38px;
 }
+
 .icone {
     height: 40px;
     width: 40px;
 }
+
 .logo {
     height: 120px;
     width: 120px;
 }
-nav .nav-btn, nav #nav-check {
+
+nav .nav-btn,
+nav #nav-check {
     display: none;
 }
 
@@ -106,11 +122,13 @@ footer {
     z-index: 1;
     cursor: pointer;
 }
+
 .bouton span {
     color: black;
     font-weight: bold;
     font-size: 24px;
 }
+
 .bouton:hover {
     box-shadow: 0 0 0 .2rem rgb(226, 175, 30);
 }
@@ -121,6 +139,7 @@ footer {
     justify-content: center;
     align-items: center;
 }
+
 .column {
     display: flex;
     flex-direction: column;
@@ -131,10 +150,13 @@ footer {
 .link {
     gap: 20px;
 }
-.link a, .link:nth-child(2) {
+
+.link a,
+.link:nth-child(2) {
     font-size: 30px;
     color: var(--main-font-color);
 }
+
 .link:nth-child(1) {
     font-size: 35px;
     color: var(--main-font-color);
@@ -152,9 +174,11 @@ footer {
     font-size: 25px;
     color: white;
 }
+
 .input-theme option {
     color: white;
 }
+
 .input-btn {
     color: black;
     font-size: 24px;
@@ -172,8 +196,8 @@ footer {
 
 .alert-green {
     position: fixed;
-    top : 137px;
-    left : 81px;
+    top: 137px;
+    left: 81px;
     background-color: #77b577;
     font-size: 25px;
     color: white;
@@ -182,10 +206,11 @@ footer {
     opacity: 0;
     transition: 1s;
 }
+
 .alert-red {
     position: fixed;
-    top : 137px;
-    left : 81px;
+    top: 137px;
+    left: 81px;
     background-color: #cc2525;
     font-size: 25px;
     color: white;
@@ -198,82 +223,115 @@ footer {
 /* switch dark light */
 
 .switch {
-  --dark: #404045;
-  --light: #EEEEEE;
-  position: relative;
-  display: inline-block;
-  border-radius: 1rem;
-  cursor: pointer;
-  width: 60px;
-  height: 30px;
-  overflow: hidden;
+    --dark: #404045;
+    --light: #EEEEEE;
+    position: relative;
+    display: inline-block;
+    border-radius: 1rem;
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    overflow: hidden;
 }
 
 .checkbox {
-  opacity: 0
+    opacity: 0
 }
 
 .slider {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--dark);
-  transition: .4s;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark);
+    transition: .4s;
 }
 
 .slider::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 40%;
-  height: 80%;
-  border-radius: 100%;
-  transform: translateY(-50%);
-  border: 4px solid var(--dark);
-  background-color: var(--light);
-  transition: .4s;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 40%;
+    height: 80%;
+    border-radius: 100%;
+    transform: translateY(-50%);
+    border: 4px solid var(--dark);
+    background-color: var(--light);
+    transition: .4s;
 }
 
 .slider::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  border-radius: 100%;
-  transform: translate(40%, -20%);
-  background-color: var(--dark);
-  transition: .4s;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    border-radius: 100%;
+    transform: translate(40%, -20%);
+    background-color: var(--dark);
+    transition: .4s;
 }
 
-.checkbox:checked + .slider {
-  background-color: var(--light);
+.checkbox:checked+.slider {
+    background-color: var(--light);
 }
 
-.checkbox:checked + .slider::before {
-  border: 4px solid var(--light);
-  background-color: var(--dark);
-  transform: translate(90%, -50%);
+.checkbox:checked+.slider::before {
+    border: 4px solid var(--light);
+    background-color: var(--dark);
+    transform: translate(90%, -50%);
 }
 
-.checkbox:checked + .slider::after {
-  width: 0;
-  height: 0;
-  background-color: var(--light);
+.checkbox:checked+.slider::after {
+    width: 0;
+    height: 0;
+    background-color: var(--light);
 }
 
-/* Responsivité de la nav bar et du footer (test)*/ 
+/* Responsivité de la nav bar et du footer (test)*/
+
 @media (max-width: 1200px) {
+
+    nav .icon-container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        top: 127px;
+        left: 340px;
+        gap: 19px;
+        right: 20%;
+    }
+    nav .link-container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        overflow: hidden;
+        top: 120px;
+        left: 10px;
+        gap: 28px;
+        padding: 10px 0px;
+        font-size: 20px;
+    }
+    nav .link-container a {
+        width: 100%;
+        overflow: hidden;
+    }
+    nav .logo-container a {
+        width: 40%;
+        overflow: hidden;
+    }
     nav .nav-btn {
         display: inline-block;
         position: absolute;
-        right: 5%;
-        top: 35px;
+        right: 0%;
+        top: 38px;
     }
+
     nav .nav-btn label {
         display: inline-block;
         width: 50px;
@@ -286,30 +344,35 @@ footer {
         height: 10px;
         border-top: 2px solid #eee;
     }
-    nav .icon-container {
-        margin-right: 3.3em;
-        gap: 38px
-    }
-    nav .link-container {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        width: fit-content;
-        overflow: hidden;
-        top: 120px;
-        left: 10px;
-        gap: 20px;
-    }
-    nav .link-container a {
-        width: 100%;
-        overflow: hidden;
-    }
-    nav #nav-check:not(:checked) ~ .link-container {
-        height: 0px;
-    }
-    nav #nav-check:checked ~ .link-container {
+
+    nav #nav-check:checked~.link-container {
+        height: 120px;
+        background-color: #80808094;
+        width: 400px;
+        padding-left: 20px;
         height: fit-content;
         overflow-y: auto;
+        transition: 1s;
+    }
+    nav #nav-check:checked~.icon-container {
+        height: fit-content;
+        width: fit-content;
+        overflow-y: auto;
+        transition: 1s;
+    }
+    nav #nav-check:not(:checked)~.icon-container {
+        height: 0px;
+    }
+    nav #nav-check:not(:checked)~.link-container {
+        height: 0px;
+    }
+
+    .icone {
+        width: 40px;
+        height: 40px;
+    }
+    .switch {
+        right: 10%
     }
 
     footer {
@@ -317,37 +380,84 @@ footer {
     }
 }
 
-@media (max-width: 756px) {
-    footer {
-        font-size: 14px;
+@media (max-width: 768px) {
+    nav .nav-btn {
+        top: 8px;
     }
-}
-
-@media (max-width: 576px) {
+    nav .link-container {
+        top: 64px;
+    }
+    nav .link-container a {
+        font-size: 15px;
+    }
     nav .icon-container {
-        position: absolute;
-        display: flex;
-        flex-wrap: wrap;
-        width: fit-content;
-        overflow-y: hidden;
-        top: 260px;
-        left: 10px;
-        gap: 20px
-    }
-    nav #nav-check:not(:checked) ~ .icon-container {
-        height: 0px;
-    }
-    nav #nav-check:checked ~ .icon-container {
-        height: fit-content;
-        overflow-y: auto;
+        top: 76px;
+        left: 288px;
+        right: 150px;
     }
     nav .logo-container a {
         width: 40%;
     }
+
+    nav #nav-check:checked~.link-container {
+        height: 164px;
+        background-color: #80808094;
+        width: 330px;
+        padding-left: 20px;
+    }
+    
+    .icone {
+        width: 38px;
+        height: 38px;
+    }
+    .switch {
+        right: 65px
+    }
+    
+    nav,
+    footer,
+    a {
+        top: 20px;
+    }
+    
+    footer {
+        font-size: 14px;
+        height: 160px;
+    }
+}
+
+@media (max-width: 576px) {
+    nav .link-container {
+        top: 64px;
+    }
+    nav .link-container a {
+        font-size: 15px;
+    }
+    nav .icon-container {
+        top: 76px;
+        left: 288px;
+    }
+    nav .logo-container a {
+        width: 40%;
+    }
+
+    nav #nav-check:checked~.link-container {
+        height: 164px;
+        background-color: #80808094;
+        width: 330px;
+        padding-left: 20px;
+    }
+    
+    .switch {
+        right: 65px
+    }
+    .icone {
+        width: 38px;
+        height: 38px;
+    }
+
     footer {
         font-size: 10px;
     }
-    .bouton {
-        padding: 0.5rem 1rem;
-    }
+
 }
