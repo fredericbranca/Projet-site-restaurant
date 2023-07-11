@@ -336,7 +336,7 @@ footer {
         display: inline-block;
         width: 50px;
         height: 50px;
-        padding: 13px;
+        padding: 27px;
     }
     nav .nav-btn label span {
         display: block;
@@ -347,7 +347,7 @@ footer {
 
     nav #nav-check:checked~.link-container {
         height: 120px;
-        background-color: #80808094;
+        background-color: #808080de;
         width: 400px;
         padding-left: 20px;
         height: fit-content;
@@ -381,6 +381,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .logo {
+        width: 90px;
+        height: 90px;
+    }
     nav .nav-btn {
         top: 8px;
     }
@@ -401,7 +405,6 @@ footer {
 
     nav #nav-check:checked~.link-container {
         height: 164px;
-        background-color: #80808094;
         width: 330px;
         padding-left: 20px;
     }
@@ -422,7 +425,7 @@ footer {
     
     footer {
         font-size: 14px;
-        height: 160px;
+        height: 180px;
     }
 }
 

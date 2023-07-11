@@ -221,11 +221,6 @@ nav {
         background-size: auto;
     }
 
-    .logo {
-        width: 60px;
-        height: 60px;
-    }
-
     .header p:first-of-type {
         font-size: 10px;
     }
