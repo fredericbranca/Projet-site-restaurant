@@ -53,7 +53,7 @@ main, nav, header {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    margin-left: 100px;
+    margin-left: 50px;
     min-width: 800px;
 }
 .sous-titre {
@@ -68,13 +68,18 @@ main, nav, header {
 .adresse {
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 18px;
 }
 .text {
+    display: flex;
+    align-items: center;
     font-size: 28px;
-    width: 600px;
+    max-width: 400px;
 }
 .bouton {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
     width: fit-content;
 }
 .input-adresse {
@@ -117,7 +122,7 @@ main, nav, header {
 .reservation {
     display: flex;
     flex-direction: column;
-    gap: 10px
+    gap: 10px;
 }
 .reservation-content {
     display: flex;
@@ -249,3 +254,96 @@ main, nav, header {
     color:rgb(226, 175, 30);
     top: -27px;
 }
+.form-resa {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+  /* @media responsive */
+
+  @media (max-width: 1204px) {
+    nav .nav-btn {
+        right: 30px;
+    }
+
+    .sous-titre {
+        font-size: 25px;
+    }
+    .content {
+        margin-left: 50px;
+    }
+    .page {
+        min-width: 450px;
+        margin-left: 10px;
+    }
+    .detailsContent div {
+        width: 150px;
+    }
+
+    /* Adresses */ 
+    .bouton span {
+        font-size: 15px;
+    }
+
+    /* Modifier adresse */
+    .input-adresse {
+        width: 400px;
+    }
+    .wrap-ajouter {
+        flex-direction: column;
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* Compte */
+    .titre {
+        font-size: 25px;
+    }
+    .link a, .link:nth-child(2) {
+        font-size: 22px;
+    }
+    .sous-titre {
+        font-size: 16px;
+    }
+    .content {
+        margin-left: 25px;
+    }
+    .page {
+        min-width: 250px;
+        margin-left: 5px;
+    }
+    .detailsContent div {
+        width: 70px;
+        font-size: 14;
+    }
+    .reservation-content div {
+        width: 120px;
+    }
+    .header-link {
+        padding-top: 42px;
+        padding-bottom: 42px;
+    }
+    .ligne {
+        display: none;
+    }
+    .menu a {
+        font-size: 20px;
+    }
+
+    /* Adresses */
+    .text {
+        font-size: 25px;
+    }
+
+    /* Modifier adresse */
+    .input-adresse {
+        width: 300px;
+        font-size: 22px;
+    }
+    .btn-ajouter {
+        width: 200px;
+        justify-content: center;
+        text-align: center;
+    }
+  }

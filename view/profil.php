@@ -92,7 +92,7 @@ if (
                     <input class="input-adresse" type="text" id="adresse" name="adresse" maxlength="255" required value="<?= $adresse['adresse'] ?>" autocomplete="off">
                     <input class="input-adresse" type="text" id="CP" name="CP" required value="<?= $adresse['cp'] ?>" autocomplete="off">
                     <input class="input-adresse" type="text" id="ville" name="ville" maxlength="50" required value="<?= $adresse['ville'] ?>" autocomplete="off">
-                    <input class="input-adresse" type="text" id="num" name="num" maxlength="10" required value="0<?= $adresse['telephone'] ?>" autocomplete="off">
+                    <input class="input-adresse" type="text" id="num" name="num" maxlength="10" required value="<?= $adresse['telephone'] ?>" autocomplete="off">
                     <?php
                     if ($adresse['defaut'] == 0) {
                     ?>
@@ -340,7 +340,7 @@ if (
         ?>
             <div>Bonjour <?= $_SESSION['users']['nom'] . ' ' . $_SESSION['users']['prenom'] ?> (Administrateur)</div>
             <div>Réservation client</div>
-            <form method="POST" action="index.php?action=profil" enctype="multipart/form-data">
+            <form class="form-resa" method="POST" action="index.php?action=profil" enctype="multipart/form-data">
                 <input class="input-theme" type="date" name="date" min="<?= date("Y-m-d") ?>" max="<?= date("Y") + 1 ?>-03-31" required>
                 <button class="bouton btn-ajouter" type="submit" name="dateRes" id="submit">Afficher les Réservations</button>
             </form>
