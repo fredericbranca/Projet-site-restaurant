@@ -175,6 +175,40 @@ nav {
 
 /* @media responsive */
 
+@media (max-width: 1200px) {
+    .header {
+        background: rgba(0, 0, 0, 0.4) url(../img/resto.jpg) no-repeat center;
+        background-blend-mode: darken;
+        background-size: auto;
+    }
+    .section-carte {
+        flex-direction: column;
+        gap: 10px;
+        min-height: 500px;
+        padding-bottom: 20px;
+    }
+    .section-carte .titre { 
+        gap: 20px;
+    }
+    .section-carte .titre p { 
+        font-size: 24px;
+    }
+    .section-carte img {
+        margin-top: 20px;
+        max-width: 380px;
+        height: auto;
+    }
+    .section-infos {
+        flex-direction: column;
+        padding: 40px 0px;
+        gap: 20px;
+        min-height: 0px;
+    }
+    .horaires {
+        border: 1px solid rgb(226, 175, 30);
+    }
+}
+
 @media (max-width: 768px) {
 
     header {
@@ -185,7 +219,6 @@ nav {
         background: rgba(0, 0, 0, 0.4) url(../img/resto.jpg) no-repeat center;
         background-blend-mode: darken;
         background-size: auto;
-
     }
 
     .logo {
@@ -237,8 +270,7 @@ nav {
         min-height: 0px;
     }
     .infos-pratiques {
-        margin: 20px;
-        width: 500px;
+        max-width: 300px;
         height: fit-content;
         padding: 20px 0px;
         gap: 15px
