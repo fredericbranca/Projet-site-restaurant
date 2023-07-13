@@ -51,35 +51,33 @@ header {
     gap: 50px;
     padding-bottom: 50px;
 }
-.tableau-slide {
-    min-width: 0;
-    overflow-x: auto;
+
+.panier-table {
     margin: 0px 50px;
-}
-.tableau {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 1500px;
-    gap: 25px;
+    border-collapse: collapse;
 }
 
-.ligne {
-    border-top: 1px solid var(--main-font-color);
+.panier-table th,
+.panier-table td {
+    padding: 10px;
+    text-align: left;
 }
 
-.item {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.panier-table th {
+    background-color: #f2f2f2;
+}
+
+.panier-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.panier-table td.prix,
+.panier-table td.prixTotal {
+    text-align: right;
 }
 
 .item div {
-    width: 200px;
-}
-
-.item div:first-of-type {
-    width: 900px;
+    width: 130px;
 }
 
 .prix,
@@ -87,19 +85,13 @@ header {
     text-align: center;
 }
 
-.prixTotal {
-    text-align: right;
-}
-
 .fin {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: calc(100% - 100px);
+    margin: 0px 50px;
 }
-.adresse {
-    margin: 0px 100px;
-}
+
 .adresse,
 .payer {
     display: flex;
@@ -153,15 +145,16 @@ select option {
     font-weight: bold;
     width: 25px;
     height: 25px;
-    background-color: var(--main-bg-color);
     border: none;
     cursor: pointer;
+    background-color: transparent;
 }
 
 @media (max-width: 1200px) {
     nav .nav-btn {
         right: 30px;
     }
+
     .fin {
         flex-direction: column;
         justify-content: center;
@@ -170,9 +163,15 @@ select option {
 }
 
 @media (max-width: 768px) {
-    .bouton span, .input-btn {
+    .panier-table {
+        font-size: 12px;
+    }
+
+    .bouton span,
+    .input-btn {
         font-size: 15px;
     }
+
     .content {
         min-width: 0;
         display: flex;
@@ -182,27 +181,14 @@ select option {
         padding-bottom: 50px;
     }
 
-    .tableau-slide {
-        min-width: 0px;
-        overflow-x: auto;
-        margin: 0px 50px;
-    }
-
-    .tableau {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 1500px;
-        gap: 25px;
-    }
-
     .fin {
         display: flex;
         flex-direction: column;
         gap: 20px;
     }
 
-    .adresse, .payer {
+    .adresse,
+    .payer {
         display: flex;
         flex-direction: column;
         gap: 11px;
