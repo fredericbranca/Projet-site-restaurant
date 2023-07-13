@@ -18,7 +18,9 @@ $titre_secondaire = (isset($titre_secondaire)) ? $titre_secondaire : "";
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="public/css/<?= $style ?>.css">
 
-    <title><?= $titre ?></title>
+    <title>
+        <?= $titre ?>
+    </title>
 </head>
 
 <body>
@@ -27,7 +29,8 @@ $titre_secondaire = (isset($titre_secondaire)) ? $titre_secondaire : "";
         <nav>
             <input type="checkbox" id="nav-check">
             <div class="logo-container">
-                <a href="index.php?action=accueil"><img class="logo" src="public/img/logo.png" alt="Logo Le Vieux Terroir"></a>
+                <a href="index.php?action=accueil"><img class="logo" src="public/img/logo.png"
+                        alt="Logo Le Vieux Terroir"></a>
                 <a href="index.php?action=accueil">Le Vieux Terroir</a>
             </div>
             <div class="nav-btn">
@@ -66,16 +69,24 @@ $titre_secondaire = (isset($titre_secondaire)) ? $titre_secondaire : "";
 
     <!-- script -->
     <script type="text/javascript" src="public/js/script.js"></script>
+    <?php
+    if (isset($script)) {
+        ?>
+        <script type="text/javascript" src="public/js/<?= $script ?>.js"></script>
+        <?php
+    }
+    ?>
+
 
     <?php
 
     if (isset($_SESSION['alerte'])) {
-    ?>
+        ?>
         <?= $_SESSION['alerte'] ?>
         <script>
             tempAlert(3000, 'alert');
         </script>
-    <?php
+        <?php
         unset($_SESSION['alerte']);
     }
 
