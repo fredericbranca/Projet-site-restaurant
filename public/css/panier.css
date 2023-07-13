@@ -1,5 +1,6 @@
 /* Couleur par défaut */
-:root, main[data-theme='dark'] {
+:root,
+main[data-theme='dark'] {
     --main-bg-color: black;
     --main-font-color: white;
     --main-input-color: rgb(57, 57, 57);
@@ -11,7 +12,9 @@ main[data-theme='light'] {
     --main-input-color: rgb(185, 185, 185);
 }
 
-main, nav, header {
+main,
+nav,
+header {
     background-color: var(--main-bg-color);
 }
 
@@ -19,6 +22,7 @@ main, nav, header {
     padding-top: 50px;
     padding-bottom: 100px;
 }
+
 .titre {
     font-size: 35px;
     font-weight: bold;
@@ -33,68 +37,89 @@ main, nav, header {
     font-size: 30px;
     padding-bottom: 162px;
 }
+
 .panier-vide a {
     font-size: 30px;
     text-decoration: underline;
 }
 
 .content {
-    min-width: 1500px;
+    min-width: 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     gap: 50px;
     padding-bottom: 50px;
+}
+.tableau-slide {
+    min-width: 0;
+    overflow-x: auto;
+    margin: 0px 50px;
 }
 .tableau {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 1500px;
-    gap: 25px
+    gap: 25px;
 }
+
 .ligne {
     border-top: 1px solid var(--main-font-color);
 }
+
 .item {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
 .item div {
     width: 200px;
 }
+
 .item div:first-of-type {
     width: 900px;
 }
-.prix, .quantite {
+
+.prix,
+.quantite {
     text-align: center;
 }
+
 .prixTotal {
     text-align: right;
 }
+
 .fin {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 1500px;
+    width: calc(100% - 100px);
 }
-.adresse, .payer {
+.adresse {
+    margin: 0px 100px;
+}
+.adresse,
+.payer {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 400px;
     font-size: 24px;
 }
-.livraison, .total {
+
+.livraison,
+.total {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
 .adresse a {
     text-align: center;
 }
+
 select {
     background-color: var(--main-input-color);
     border-radius: 5px;
@@ -102,9 +127,11 @@ select {
     padding-left: 10px;
     font-size: 19px;
 }
+
 select option {
     font-size: 19px;
 }
+
 .qtt {
     width: fit-content;
     display: flex;
@@ -116,6 +143,7 @@ select option {
     padding: 1px 5px;
     margin-left: 30%;
 }
+
 .btn {
     display: flex;
     justify-content: center;
@@ -128,4 +156,71 @@ select option {
     background-color: var(--main-bg-color);
     border: none;
     cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+    nav .nav-btn {
+        right: 30px;
+    }
+    .fin {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .bouton span, .input-btn {
+        font-size: 15px;
+    }
+    .content {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px;
+        padding-bottom: 50px;
+    }
+
+    .tableau-slide {
+        min-width: 0px;
+        overflow-x: auto;
+        margin: 0px 50px;
+    }
+
+    .tableau {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 1500px;
+        gap: 25px;
+    }
+
+    .fin {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .adresse, .payer {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        width: 250px;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    select {
+        background-color: var(--main-input-color);
+        border-radius: 5px;
+        height: 38px;
+        padding-left: 10px;
+        font-size: 15px;
+        max-width: 300px;
+    }
+
+    select option {
+        font-size: 13px;
+    }
 }

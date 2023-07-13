@@ -11,8 +11,16 @@ main[data-theme='light'] {
     --main-input-color: rgb(185, 185, 185);
 }
 
-body {
-    background: rgba(0, 0, 0, 0.4) url(../img/carte.jpg) no-repeat;
+header {
+    position: relative;
+    min-width: 90vw;
+}
+nav {
+    position: absolute;
+    width:  90vw;
+}
+.header {
+    background: rgba(0, 0, 0, 0.4) url(../img/carte.jpg) no-repeat 50% 65% ;
     background-blend-mode: darken;
     background-size: 100% auto;
 }
@@ -37,10 +45,12 @@ body {
     padding: 100px 0px;
 }
 .carte-content {
+    max-width: max(1300px, calc(100% - 80px));
     display: flex;
     flex-direction: column;
     align-items: left;
     gap: 36px;
+    margin: 50px 0px;
 }
 .content {
     display: flex;
@@ -56,7 +66,7 @@ body {
     gap: 50px;
 }
 .produit p:first-of-type {
-    width: 1000px;
+    max-width: max(1000px, calc(100% - 80px));
 }
 .content p {
     max-width: 1000px;
@@ -72,6 +82,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin: 0px 25px;
 }
 .titre {
     font-size: 35px;
@@ -87,11 +98,6 @@ body {
     color:rgb(226, 175, 30);
     padding-left: 50px;
 }
-span {
-    width: 1px;
-    height: 100px;
-    background-color: rgb(226, 175, 30);
-  }
 .input-qtt {
     background-color: var(--main-input-color);
     width: 70px;
@@ -102,4 +108,29 @@ span {
 }
 .wrap {
     gap: 50px;
+}
+
+@media (max-width: 1200px) {
+    nav .nav-btn {
+        right: 30px;
+    }
+    .content p {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        background: rgba(0, 0, 0, 0.4) url(../img/carte.jpg) no-repeat 100%;
+        background-blend-mode: darken;
+        background-size: auto;
+        min-height: 202px;
+        padding-top: 50px;
+    }
+    .header p {
+        font-size: 20px;
+    }
+    .content p {
+        font-size: 15px;
+    }
 }

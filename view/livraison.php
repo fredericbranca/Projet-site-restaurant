@@ -124,8 +124,8 @@ if (isset($requeteQttProduits)) {
             </div>
         </div>
         <div class="wrap">
-            <a class="bouton input-btn" id="panier" href="index.php?action=panier">VOIR LE PANIER</a>
             <input class="bouton input-btn" type="submit" name="submit" value="AJOUTER AU PANIER">
+            <a class="bouton input-btn" id="panier" href="index.php?action=panier">VOIR LE PANIER</a>
         </div>
     </form>
 
