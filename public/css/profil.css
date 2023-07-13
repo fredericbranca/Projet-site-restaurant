@@ -70,6 +70,11 @@ main, nav, header {
     flex-wrap: wrap;
     gap: 18px;
 }
+.ajouterAdresse {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 .text {
     display: flex;
     align-items: center;
@@ -88,11 +93,6 @@ main, nav, header {
     width: 640px;
     border-radius: 10px;
     font-size: 25px;
-}
-.ajouterAdresse {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
 }
 .btn-ajouter {
     color: black;
@@ -118,22 +118,10 @@ main, nav, header {
     width: 30px;
     height: 30px;
 }
-
-.reservation {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.reservation-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    width: fit-content;
-}
-.reservation-content div {
-    width: 200px;
-}
 .btn-annuler {
+    display: flex;
+    justify-content: center;
+
     padding: 5px;
     width: 100px;
     color: black;
@@ -260,6 +248,33 @@ main, nav, header {
     gap: 10px;
 }
 
+/* Tableau */
+.table-responsive table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-responsive td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }
+
+  .table-responsive th,
+  .table-responsive td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .table-responsive thead {
+    background-color: #eee;
+  }
+  
+  .table-responsive th {
+    font-weight: bold;
+  }
+
   /* @media responsive */
 
   @media (max-width: 1204px) {
@@ -347,3 +362,60 @@ main, nav, header {
         text-align: center;
     }
   }
+
+  @media only screen and (max-width: 900px) {
+
+    .table-responsive td {
+        white-space: inherit;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 320px;
+      }
+
+    .table-responsive table, 
+    .table-responsive thead, 
+    .table-responsive tbody, 
+    .table-responsive tr, 
+    .table-responsive th, 
+    .table-responsive td {
+        display: block;
+    }
+
+    .table-responsive thead {
+        display: none;
+    }
+
+    .table-responsive td {
+        padding-left: 160px;
+        position: relative;
+        margin-top: -1px;
+        background: #FFF;
+    }
+
+    .table-responsive td:nth-child(odd) {
+        background-color: #eee;
+    }
+
+    .table-responsive td::before {
+        padding: 10px;
+        content: attr(data-label);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 130px;
+        bottom: 0;
+        background-color: #000;
+        color: #FFF;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    .table-responsive tr {
+        margin-bottom: 1rem;
+    }
+
+    .table-responsive th + td {
+        padding-left: 10px;
+    }
+}
