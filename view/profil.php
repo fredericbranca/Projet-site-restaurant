@@ -329,26 +329,31 @@ if (
                     <?php
                     if ($commandes) {
                         ?>
-                        <div class="reservation-content">
-                            <div>Date</div>
-                            <div>Prix</div>
-                        </div>
-                        <div class="ligne2"></div>
-                        <?php
-                        foreach ($commandes as $commande) {
-                            ?>
-                            <div class="reservation-content">
-                                <div>
-                                    <?= $commande['date'] ?>
-                                </div>
-                                <div>
-                                    <?= $commande['prix_total'] ?> €
-                                </div>
-                            </div>
-                            <?php
-                        }
-                        ?>
-
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Prix</th>
+                                </tr>
+                            </thead>
+                            <!-- <div class="ligne2"></div> -->
+                            <tbody>
+                                <?php
+                                foreach ($commandes as $commande) {
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?= $commande['date'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $commande['prix_total'] ?> €
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                         <?php
                     } else {
                         ?>
