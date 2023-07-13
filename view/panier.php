@@ -47,48 +47,51 @@ if (!$panier) {
     </div>
 
     <div class="content">
-        <div class="tableau-slide">
-            <div class="tableau">
-                <div class="item">
-                    <div>Plat</div>
-                    <div class="prix">Prix</div>
-                    <div class="quantite">Quantité</div>
-                    <div class="prixTotal">Total</div>
-                </div>
-                <div class="ligne"></div>
 
+        <table class="panier-table">
+            <thead>
+                <tr>
+                    <th>Plat</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                </tr>
+                <!-- <div class="ligne"></div> -->
+            </thead>
+            <tbody>
                 <?php
                 $total = 0;
                 foreach ($produits as $produit) {
                     $total += $produit['quantite'] * $produit['prix'];
                     ?>
 
-                    <div class="item">
-                        <div>
+                    <tr>
+                        <td>
                             <?= $produit['description'] ?>
-                        </div>
-                        <div class="prix">
+                        </td>
+                        <td class="prix">
                             <?= $produit['prix'] ?> €
-                        </div>
-                        <div>
+                        </td>
+                        <td>
                             <form class="qtt" method="POST" action="index.php?action=panier&id=<?= $produit['id_produit'] ?>"
                                 enctype="multipart/form-data">
                                 <button class="btn" type="submit" name="moins" id="submit">-</button>
                                 <?= $produit['quantite'] ?>
                                 <button class="btn" type="submit" name="plus" id="submit">+</button>
                             </form>
-                        </div>
-                        <div class="prixTotal">
+                        </td>
+                        <td class="prixTotal">
                             <?= $produit['quantite'] * $produit['prix'] ?>€
-                        </div>
-                    </div>
-                    <div class="ligne"></div>
+                        </td>
+                    </tr>
+                    <!-- <div class="ligne"></div> -->
 
                     <?php
                 }
                 ?>
-            </div>
-        </div>
+            </tbody>
+        </table>
+
         <form method="POST" action="index.php?action=panier" enctype="multipart/form-data">
             <div class="fin">
                 <div class="adresse">
